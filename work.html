@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WORKS & COLLECTIONS — ADI POETRY</title>
+  
+  <!-- Editorial Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================================
+       1. DESIGN TOKENS (BROWN & WHITE PALETTE)
+       ========================================= */
+    :root {
+      --bg-ivory: #FAF7F2;          
+      --bg-cream: #F1EAE0;          
+      --bg-espresso: #1E1611;       
+      --bg-cocoa: #2C211A;          
+      --text-dark: #1E1611;         
+      --text-muted: #635347;        
+      --text-light: #FAF7F2;        
+      --text-light-muted: #D2C5B8;  
+      --accent-bronze: #B67B48;     
+      --border-light: rgba(30, 22, 17, 0.14);
+      --border-dark: rgba(250, 247, 242, 0.18);
+      
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: var(--bg-ivory);
+      color: var(--text-dark);
+      font-family: var(--font-sans);
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* =========================================
+       2. NAVIGATION
+       ========================================= */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1.15rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: none;
+    }
+
+    .brand-pill, .nav-pill {
+      pointer-events: auto;
+      background: rgba(30, 22, 17, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text-light);
+      border: 1px solid var(--border-dark);
+      border-radius: 999px;
+      padding: 0.65rem 1.35rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .brand-pill:hover {
+      background: var(--accent-bronze);
+      color: var(--bg-espresso);
+    }
+
+    .nav-links {
+      display: none;
+      gap: 1.6rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 2px;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--accent-bronze);
+    }
+
+    .menu-toggle {
+      background: none;
+      border: none;
+      color: var(--text-light);
+      font-family: var(--font-sans);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 900px) {
+      header {
+        padding: 1.5rem 3rem;
+      }
+      .nav-links {
+        display: flex;
+      }
+      .menu-toggle {
+        display: none;
+      }
+    }
+
+    /* Mobile Drawer */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-espresso);
+      color: var(--text-light);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-menu a {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-style: italic;
+      transition: color 0.25s ease;
+    }
+
+    .mobile-menu a:hover {
+      color: var(--accent-bronze);
+    }
+
+    /* =========================================
+       3. PAGE HEADER & FILTER TABS
+       ========================================= */
+    .page-header {
+      background-color: var(--bg-espresso);
+      color: var(--text-light);
+      padding: 10rem 1.5rem 5rem;
+      text-align: center;
+      position: relative;
+    }
+
+    @media (min-width: 768px) {
+      .page-header {
+        padding: 11rem 3rem 6rem;
+      }
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-bronze);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+    }
+
+    .page-subtitle {
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.08rem;
+      color: var(--text-light-muted);
+      font-weight: 300;
+    }
+
+    /* Filter Bar */
+    .filter-bar {
+      background: var(--bg-cream);
+      border-bottom: 1px solid var(--border-light);
+      padding: 1rem 1.5rem;
+      position: sticky;
+      top: 68px;
+      z-index: 900;
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 768px) {
+      .filter-bar {
+        padding: 1.15rem 3rem;
+        gap: 1.25rem;
+      }
+    }
+
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-dark);
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--bg-espresso);
+      color: var(--text-light);
+      border-color: var(--bg-espresso);
+    }
+
+    /* =========================================
+       4. WORKS CONTAINER & GRID
+       ========================================= */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 5.5rem 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .container {
+        padding: 7rem 3rem;
+      }
+    }
+
+    .works-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 900px) {
+      .works-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .work-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      padding: 2.8rem 2.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .work-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--bg-espresso);
+      box-shadow: 0 20px 45px rgba(30, 22, 17, 0.08);
+    }
+
+    .work-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .work-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-bronze);
+      font-weight: 600;
+    }
+
+    .work-date {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .work-title {
+      font-family: var(--font-serif);
+      font-size: 2.1rem;
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: var(--text-dark);
+    }
+
+    .work-snippet {
+      font-family: var(--font-serif);
+      font-size: 1.28rem;
+      font-style: italic;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 2.5rem;
+    }
+
+    .read-poem-btn {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--bg-espresso);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border-bottom: 1px solid var(--bg-espresso);
+      padding-bottom: 0.25rem;
+      width: fit-content;
+      transition: color 0.25s ease, border-color 0.25s ease;
+    }
+
+    .work-card:hover .read-poem-btn {
+      color: var(--accent-bronze);
+      border-color: var(--accent-bronze);
+    }
+
+    /* =========================================
+       5. FULL-SCREEN POEM READING MODAL
+       ========================================= */
+    .poem-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(30, 22, 17, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease;
+    }
+
+    .poem-modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content-box {
+      background: var(--bg-ivory);
+      color: var(--text-dark);
+      width: 100%;
+      max-width: 760px;
+      max-height: 85vh;
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      overflow-y: auto;
+      position: relative;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+      transform: translateY(20px);
+      transition: transform 0.4s ease;
+    }
+
+    .poem-modal.open .modal-content-box {
+      transform: translateY(0);
+    }
+
+    @media (min-width: 768px) {
+      .modal-content-box {
+        padding: 4.5rem 4rem;
+      }
+    }
+
+    .close-modal-btn {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.75rem;
+      background: var(--bg-cream);
+      border: 1px solid var(--border-light);
+      color: var(--text-dark);
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .close-modal-btn:hover {
+      background: var(--accent-bronze);
+      color: var(--text-light);
+    }
+
+    .modal-poem-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+      font-weight: 600;
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-poem-meta {
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent-bronze);
+      font-weight: 600;
+      margin-bottom: 2.5rem;
+      display: block;
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1rem;
+    }
+
+    .modal-poem-body {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-style: italic;
+      line-height: 1.9;
+      color: var(--text-dark);
+      white-space: pre-line;
+    }
+
+    /* =========================================
+       6. FOOTER
+       ========================================= */
+    footer {
+      background-color: var(--bg-espresso);
+      color: var(--text-light);
+      padding: 5rem 1.5rem 2.5rem;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .footer-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-light-muted);
+    }
+
+    @media (min-width: 768px) {
+      .footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================
+       NAVIGATION
+       ========================================= -->
+  <header>
+    <a href="index.html" class="brand-pill">ADI POETRY</a>
+
+    <nav class="nav-pill">
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="works.html" class="active">Works & Collections</a>
+        <a href="audio.html">Audio Readings</a>
+        <a href="journal.html">Journal</a>
+        <a href="about.html">About & Bookings</a>
+      </div>
+      <button class="menu-toggle" id="menuBtn" aria-label="Open Navigation">Menu +</button>
+    </nav>
+  </header>
+
+  <!-- Mobile Fullscreen Drawer -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="works.html">Works & Collections</a>
+    <a href="audio.html">Audio Readings</a>
+    <a href="journal.html">Journal</a>
+    <a href="about.html">About & Bookings</a>
+    <button class="filter-btn" id="closeMenuBtn" style="margin-top: 1rem; color: var(--text-light); border-color: var(--border-dark);">Close</button>
+  </div>
+
+  <!-- =========================================
+       PAGE HEADER
+       ========================================= -->
+  <header class="page-header">
+    <span class="section-eyebrow">The Reading Room</span>
+    <h1 class="page-title">Works & Collections</h1>
+    <p class="page-subtitle">
+      A living archive of desire, devotion, vulnerability, and the many ways masculinity learns to love.
+    </p>
+  </header>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Works</button>
+    <button class="filter-btn" data-filter="longing">I · Longing</button>
+    <button class="filter-btn" data-filter="devotion">II · Devotion</button>
+    <button class="filter-btn" data-filter="vulnerability">III · Vulnerability</button>
+  </div>
+
+  <!-- =========================================
+       WORKS GRID
+       ========================================= -->
+  <main class="container">
+    <div class="works-grid" id="worksGrid">
+      
+      <!-- Poem Card 1 -->
+      <article class="work-card" data-category="longing" onclick="openPoemModal('Where the Distance Ends', 'I · Longing · 2026', `There is a geography to waiting—
+      measured not in miles or hours,
+      but in the quiet space between a breath drawn in
+      and the name whispered against the dark.
+      
+      I have stood at the edge of rooms
+      where your shadow used to linger,
+      learning how a house remembers warmth
+      long after the fire has turned to ash.
+      
+      They taught us to outrun our hunger,
+      to treat every ache as an uninvited guest.
+      But here, beneath the weight of midnight,
+      I unlearn the armor piece by piece.
+      
+      If longing is the price of knowing what is real,
+      then let me pay it in full—
+      unshod, unafraid,
+      and entirely reachable.`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">I · Longing</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">Where the Distance Ends</h2>
+          <p class="work-snippet">“There is a geography to waiting— measured not in miles or hours, but in the quiet space between a breath drawn in...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+      <!-- Poem Card 2 -->
+      <article class="work-card" data-category="devotion" onclick="openPoemModal('Anatomy of a Quiet Room', 'II · Devotion · 2026', `Devotion is not a grand cathedral
+      or a banner flown across the wind.
+      It is the coffee left to warm upon the counter,
+      the steady hand held out against the tremor of the day.
+      
+      We spent our youth looking for lightning—
+      wanting love to strike with blinding force.
+      Now I find it in the steady hum of a ceiling fan,
+      in the way your shoulders drop when you finally feel safe.
+      
+      To love someone without demanding they perform their strength—
+      that is the sanctuary we build with our bare hands.`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">II · Devotion</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">Anatomy of a Quiet Room</h2>
+          <p class="work-snippet">“Devotion is not a grand cathedral or a banner flown across the wind. It is the coffee left to warm upon the counter...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+      <!-- Poem Card 3 -->
+      <article class="work-card" data-category="vulnerability" onclick="openPoemModal('The Weight of Softness', 'III · Vulnerability · 2026', `We were handed armor before we were given names.
+      Told that to bend was to invite the fracture,
+      that tears were currency for the broken.
+      
+      It takes a terrifying amount of courage
+      to lay the shield down on the floor
+      and let another witness the unhealed scar.
+      
+      Not to ask for fixing.
+      Not to demand a cure.
+      Simply to say: *Here is the softest part of me.
+      Be careful where you step.*`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">III · Vulnerability</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">The Weight of Softness</h2>
+          <p class="work-snippet">“We were handed armor before we were given names. Told that to bend was to invite the fracture...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+      <!-- Poem Card 4 -->
+      <article class="work-card" data-category="longing" onclick="openPoemModal('Blueprint for a Return', 'I · Longing · 2026', `If you trace the map back to its origin,
+      you will find a boy who learned to swallow his own voice
+      so he wouldn't disturb the peace.
+      
+      I am building a new house now—
+      one with wide windows,
+      where the wind can enter without permission,
+      and every room smells of salt and patience.`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">I · Longing</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">Blueprint for a Return</h2>
+          <p class="work-snippet">“If you trace the map back to its origin, you will find a boy who learned to swallow his own voice...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+      <!-- Poem Card 5 -->
+      <article class="work-card" data-category="devotion" onclick="openPoemModal('The Art of Staying', 'II · Devotion · 2026', `Leaving is so easy when the road is clear
+      and the horizon offers no resistance.
+      
+      True grace is found in the anchoring—
+      in planting your boots in the winter mud
+      and saying to the storm:
+      *We will see this morning through together.*`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">II · Devotion</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">The Art of Staying</h2>
+          <p class="work-snippet">“Leaving is so easy when the road is clear and the horizon offers no resistance. True grace is found in the anchoring...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+      <!-- Poem Card 6 -->
+      <article class="work-card" data-category="vulnerability" onclick="openPoemModal('First Light on the Ridge', 'III · Vulnerability · 2026', `The dark never announces its departure.
+      It simply thins at the edges,
+      turning from obsidian to bruised lavender,
+      until the sun breaks over the ridge
+      and makes gold of everything it touches.
+      
+      So it is with healing:
+      You do not notice the mending
+      until the light is already inside the room.`)">
+        <div>
+          <div class="work-meta-row">
+            <span class="work-tag">III · Vulnerability</span>
+            <span class="work-date">2026</span>
+          </div>
+          <h2 class="work-title">First Light on the Ridge</h2>
+          <p class="work-snippet">“The dark never announces its departure. It simply thins at the edges, turning from obsidian to bruised lavender...”</p>
+        </div>
+        <span class="read-poem-btn">Read in full →</span>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- =========================================
+       FULLSCREEN POEM MODAL CONTAINER
+       ========================================= -->
+  <div class="poem-modal" id="poemModal">
+    <div class="modal-content-box">
+      <button class="close-modal-btn" onclick="closePoemModal()" aria-label="Close Poem">×</button>
+      <span class="modal-poem-meta" id="modalMeta">Collection · 2026</span>
+      <h2 class="modal-poem-title" id="modalTitle">Poem Title</h2>
+      <div class="modal-poem-body" id="modalBody">
+        Poem text goes here...
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================
+       FOOTER
+       ========================================= -->
+  <footer>
+    <div class="footer-inner">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <span style="font-family: var(--font-serif); font-size: 1.5rem; font-style: italic;">ADI POETRY</span>
+        <a href="index.html" class="filter-btn" style="color: var(--text-light); border-color: var(--border-dark);">Return to Home</a>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 ADI POETRY · All Rights Reserved</span>
+        <span>Love, Held With Courage</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================
+       INTERACTIVITY SCRIPT
+       ========================================= -->
+  <script>
+    // 1. Mobile Navigation
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
+    closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+    // 2. Category Filtering Logic
+    const filterButtons = document.querySelectorAll('.filter-btn[data-filter]');
+    const workCards = document.querySelectorAll('.work-card');
+
+    filterButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // Update active button state
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const category = btn.getAttribute('data-filter');
+
+        workCards.forEach(card => {
+          if (category === 'all' || card.getAttribute('data-category') === category) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 3. Poem Reading Modal Logic
+    const poemModal = document.getElementById('poemModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalMeta = document.getElementById('modalMeta');
+    const modalBody = document.getElementById('modalBody');
+
+    function openPoemModal(title, meta, text) {
+      modalTitle.textContent = title;
+      modalMeta.textContent = meta;
+      modalBody.textContent = text;
+      poemModal.classList.add('open');
+      document.body.style.overflow = 'hidden'; // Lock background scroll
+    }
+
+    function closePoemModal() {
+      poemModal.classList.remove('open');
+      document.body.style.overflow = 'auto'; // Restore scroll
+    }
+
+    // Close modal on outside click
+    poemModal.addEventListener('click', (e) => {
+      if (e.target === poemModal) {
+        closePoemModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closePoemModal();
+      }
+    });
+  </script>
+</body>
+</html>
