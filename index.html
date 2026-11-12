@@ -5,27 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADI POETRY — Love, Held With Courage</title>
 
-  <!-- World-Class Literary Fonts: Cormorant Garamond (High-Fashion Editorial Serif) & Inter (Swiss Precision Sans) -->
+  <!-- World-Class Literary Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================
-       1. SHARP GALLERY TOKENS (OBSIDIAN BROWN & PURE WHITE)
+       1. BENTO-GRID DESIGN TOKENS (OBSIDIAN & FROSTED GLASS)
        ========================================= */
     :root {
-      --white: #FFFFFF;               /* Pure Gallery White */
-      --off-white: #F7F6F4;           /* Crisp Archival Paper */
-      --espresso: #120D0A;            /* Deep Obsidian Espresso */
-      --espresso-soft: #1E1612;       /* Elevated Dark Surface */
-      --ink: #120D0A;                 /* Primary Sharp Ink */
-      --ink-muted: #5C5049;           /* Editorial Muted Brown-Gray */
-      --paper-muted: #B8ABA2;         /* Soft Warm Stone on Dark */
-      --accent: #9E6234;              /* Burnished Copper-Brown */
-      --line-dark: rgba(18, 13, 10, 0.14);
-      --line-light: rgba(255, 255, 255, 0.16);
-
+      --bg-deep: #0A0706;             /* Ultra-Dark Obsidian Base */
+      --card-bg: #14100D;             /* Deep Frosted Glass Card */
+      --card-hover: #1D1713;          /* Slightly Lighter Card on Hover */
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --border-glow: rgba(182, 123, 88, 0.3);
+      --text-main: #FAF7F2;           /* Crisp Ivory White */
+      --text-muted: #9E9187;          /* Warm Stone Gray */
+      --accent-bronze: #B67B48;       /* Burnished Gold-Bronze */
+      
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -36,14 +34,9 @@
       box-sizing: border-box;
     }
 
-    html {
-      font-size: 16px;
-      scroll-behavior: smooth;
-    }
-
     body {
-      background-color: var(--white);
-      color: var(--ink);
+      background-color: var(--bg-deep);
+      color: var(--text-main);
       font-family: var(--sans);
       line-height: 1.6;
       overflow-x: hidden;
@@ -61,7 +54,7 @@
     }
 
     /* =========================================
-       2. ARCHITECTURAL HEADER (MOBILE-FIRST)
+       2. TOP NAVIGATION BAR
        ========================================= */
     .site-header {
       position: fixed;
@@ -72,17 +65,15 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.1rem 1.25rem;
-      background: rgba(18, 13, 10, 0.88);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line-light);
-      color: var(--white);
+      padding: 1.15rem 1.5rem;
+      background: rgba(10, 7, 6, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-glass);
     }
 
     .logo {
-      font-family: var(--sans);
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.24em;
       text-transform: uppercase;
@@ -90,27 +81,23 @@
 
     .desktop-nav {
       display: none;
-      gap: 2.2rem;
+      gap: 2rem;
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--paper-muted);
-    }
-
-    .desktop-nav a {
-      transition: color 0.25s ease;
+      color: var(--text-muted);
     }
 
     .desktop-nav a:hover,
     .desktop-nav a.active {
-      color: var(--white);
+      color: var(--text-main);
     }
 
     .menu-trigger {
       background: none;
-      border: 1px solid var(--line-light);
-      color: var(--white);
-      padding: 0.45rem 0.9rem;
+      border: 1px solid var(--border-glass);
+      color: var(--text-main);
+      padding: 0.45rem 1rem;
       font-family: var(--sans);
       font-size: 0.68rem;
       letter-spacing: 0.18em;
@@ -118,24 +105,17 @@
       cursor: pointer;
     }
 
-    @media (min-width: 960px) {
-      .site-header {
-        padding: 1.25rem 3.5rem;
-      }
-      .desktop-nav {
-        display: flex;
-      }
-      .menu-trigger {
-        display: none;
-      }
+    @media (min-width: 900px) {
+      .site-header { padding: 1.25rem 3.5rem; }
+      .desktop-nav { display: flex; }
+      .menu-trigger { display: none; }
     }
 
-    /* Fullscreen Mobile Overlay */
+    /* Mobile Overlay Menu */
     .mobile-overlay {
       position: fixed;
       inset: 0;
-      background: var(--espresso);
-      color: var(--white);
+      background: var(--bg-deep);
       z-index: 1200;
       display: flex;
       flex-direction: column;
@@ -145,322 +125,229 @@
       transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mobile-overlay.open {
-      transform: translateY(0);
-    }
+    .mobile-overlay.open { transform: translateY(0); }
 
-    .mobile-overlay-links {
+    .mobile-links {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.5rem;
       margin: auto 0;
     }
 
-    .mobile-overlay-links a {
+    .mobile-links a {
       font-family: var(--serif);
-      font-size: 2.6rem;
+      font-size: 2.4rem;
       font-weight: 300;
-      line-height: 1.1;
-      border-bottom: 1px solid var(--line-light);
-      padding-bottom: 0.75rem;
-    }
-
-    .mobile-overlay-links a span {
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      margin-right: 0.75rem;
-      vertical-align: middle;
+      border-bottom: 1px solid var(--border-glass);
+      padding-bottom: 0.5rem;
     }
 
     /* =========================================
-       3. HERO — AGENTURA-INSPIRED GEOMETRIC MONOLITH
+       3. BENTO-GRID HERO SECTION
        ========================================= */
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      background-color: var(--espresso);
-      color: var(--white);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 5.5rem 1.25rem 2rem;
-      overflow: hidden;
-    }
-
-    /* Crisp Geometric Wireframe Overlay */
-    .hero-geometry {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 1;
-    }
-
-    .wire-diamond {
-      position: absolute;
-      width: 280px;
-      height: 280px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      transform: rotate(45deg);
-    }
-
-    .wire-circle {
-      position: absolute;
-      width: 310px;
-      height: 310px;
-      border: 1px solid rgba(158, 98, 52, 0.28);
-      border-radius: 50%;
-    }
-
-    .wire-crosshair-v {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 1px;
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    @media (min-width: 960px) {
-      .hero {
-        padding: 6.5rem 3.5rem 2.5rem;
-      }
-      .wire-diamond {
-        width: 480px;
-        height: 480px;
-      }
-      .wire-circle {
-        width: 520px;
-        height: 520px;
-      }
-    }
-
-    .hero-meta-bar {
-      position: relative;
-      z-index: 3;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.66rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--paper-muted);
-    }
-
-    .hero-stage {
-      position: relative;
-      z-index: 3;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
-      margin: auto 0;
-      padding: 1.5rem 0;
-    }
-
-    @media (min-width: 960px) {
-      .hero-stage {
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 4rem;
-        max-width: 1320px;
-        width: 100%;
-        margin: auto;
-      }
-    }
-
-    .hero-copy {
-      order: 2;
-      text-align: left;
-    }
-
-    @media (min-width: 960px) {
-      .hero-copy {
-        order: 1;
-      }
-    }
-
-    .hero-label {
-      display: inline-block;
-      font-size: 0.7rem;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-
-    .hero-headline {
-      font-family: var(--serif);
-      font-size: clamp(3rem, 7vw, 6.2rem);
-      font-weight: 300;
-      line-height: 0.98;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.35rem;
-    }
-
-    .hero-headline em {
-      font-style: italic;
-      color: var(--paper-muted);
-    }
-
-    .hero-lead {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--paper-muted);
-      max-width: 480px;
-      font-weight: 300;
-      margin-bottom: 2.2rem;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-
-    .btn-sharp-white {
-      background: var(--white);
-      color: var(--espresso);
-      padding: 0.95rem 1.8rem;
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: 1px solid var(--white);
-      transition: all 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .btn-sharp-white:hover {
-      background: transparent;
-      color: var(--white);
-    }
-
-    .btn-sharp-ghost {
-      background: transparent;
-      color: var(--white);
-      padding: 0.95rem 1.8rem;
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      border: 1px solid var(--line-light);
-      transition: all 0.3s ease;
-    }
-
-    .btn-sharp-ghost:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    /* Switched Hero Portrait — Sharp Editorial Frame */
-    .hero-visual {
-      order: 1;
-      position: relative;
-      width: 100%;
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    @media (min-width: 960px) {
-      .hero-visual {
-        order: 2;
-        max-width: 460px;
-      }
-    }
-
-    .hero-img-frame {
-      position: relative;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      border: 1px solid var(--line-light);
-      background: var(--espresso-soft);
-    }
-
-    .hero-img-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: contrast(1.08);
-      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .hero-img-frame:hover img {
-      transform: scale(1.03);
-    }
-
-    .hero-img-caption {
-      display: flex;
-      justify-content: space-between;
-      padding-top: 0.65rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--paper-muted);
-    }
-
-    /* =========================================
-       4. SEAMLESS SIDEWAYS MARQUEE (GALLERY PLATES)
-       ========================================= */
-    .gallery-strip {
-      background: var(--white);
-      border-bottom: 1px solid var(--line-dark);
-      padding: 4.5rem 0;
-      overflow: hidden;
-    }
-
-    .strip-header {
-      padding: 0 1.25rem 2.5rem;
+    .hero-section {
+      min-height: 100vh;
+      padding: 6.5rem 1.25rem 3rem;
       max-width: 1320px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      justify-content: center;
     }
 
-    @media (min-width: 960px) {
-      .strip-header {
-        padding: 0 3.5rem 3rem;
+    @media (min-width: 900px) {
+      .hero-section { padding: 7.5rem 3.5rem 3rem; }
+    }
+
+    /* Bento Grid Container */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 900px) {
+      .bento-grid {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto auto;
+      }
+    }
+
+    .bento-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 2.25rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-glow);
+      background: var(--card-hover);
+      transform: translateY(-3px);
+    }
+
+    /* Card Spans */
+    .span-2 {
+      grid-column: span 1;
+    }
+    @media (min-width: 900px) {
+      .span-2 { grid-column: span 2; }
+    }
+
+    /* Card 1: Main Title & Intro */
+    .bento-intro h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      margin: 0.75rem 0 1.25rem;
+    }
+
+    .bento-intro h1 em {
+      font-style: italic;
+      color: var(--accent-bronze);
+    }
+
+    .bento-intro p {
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      font-weight: 300;
+      max-width: 520px;
+      margin-bottom: 2rem;
+    }
+
+    /* Card 2: Portrait Frame */
+    .bento-portrait {
+      padding: 0;
+      aspect-ratio: 1 / 1;
+    }
+
+    .bento-portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: contrast(1.05);
+    }
+
+    /* Card 3: Selected Poems Snippet */
+    .bento-poems h3 {
+      font-family: var(--serif);
+      font-size: 1.8rem;
+      font-weight: 400;
+      margin: 0.5rem 0 0.75rem;
+    }
+
+    .bento-poems blockquote {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    /* Card 4: Audio Teaser Box */
+    .bento-audio {
+      background: linear-gradient(135deg, rgba(182, 123, 88, 0.12), var(--card-bg));
+    }
+
+    .audio-play-trigger {
+      background: var(--text-main);
+      color: var(--bg-deep);
+      border: none;
+      border-radius: 999px;
+      padding: 0.85rem 1.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.3s ease;
+      width: fit-content;
+      margin-top: 1.5rem;
+    }
+
+    .audio-play-trigger:hover {
+      background: var(--accent-bronze);
+      color: var(--text-main);
+    }
+
+    /* Card 5: Quick Links / Collections */
+    .bento-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .bento-link-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-glass);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .bento-link-row:hover { color: var(--accent-bronze); }
+
+    .card-eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent-bronze);
+      font-weight: 600;
+    }
+
+    /* =========================================
+       4. SEAMLESS SIDEWAYS MARQUEE (BELOW BENTO)
+       ========================================= */
+    .marquee-section {
+      background: var(--card-bg);
+      border-top: 1px solid var(--border-glass);
+      border-bottom: 1px solid var(--border-glass);
+      padding: 4.5rem 0;
+      overflow: hidden;
+      margin-top: 4rem;
+    }
+
+    .marquee-header {
+      max-width: 1320px;
+      margin: 0 auto 2.5rem;
+      padding: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    @media (min-width: 900px) {
+      .marquee-header {
+        padding: 0 3.5rem;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
       }
     }
 
-    .eyebrow {
-      font-size: 0.68rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      display: block;
-    }
-
-    .display-title {
-      font-family: var(--serif);
-      font-size: clamp(2.1rem, 4.2vw, 3.6rem);
-      font-weight: 400;
-      line-height: 1.08;
-      letter-spacing: -0.01em;
-    }
-
-    .marquee-track {
+    .marquee-track-wrap {
       display: flex;
       width: max-content;
-      animation: glideLeft 42s linear infinite;
+      animation: scrollSideways 40s linear infinite;
     }
 
-    .marquee-track:hover {
-      animation-play-state: paused;
-    }
+    .marquee-track-wrap:hover { animation-play-state: paused; }
 
-    @keyframes glideLeft {
+    @keyframes scrollSideways {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
@@ -471,475 +358,116 @@
       padding-right: 2rem;
     }
 
-    .art-plate {
-      width: 270px;
+    .gallery-plate {
+      width: 280px;
+      background: var(--bg-deep);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      overflow: hidden;
       flex-shrink: 0;
-      border-right: 1px solid var(--line-dark);
-      padding-right: 2rem;
+      transition: transform 0.3s ease;
     }
 
     @media (min-width: 768px) {
-      .art-plate {
-        width: 360px;
-      }
+      .gallery-plate { width: 340px; }
     }
 
-    .art-plate-img {
-      aspect-ratio: 3 / 4;
+    .gallery-plate:hover { transform: translateY(-5px); }
+
+    .gallery-plate-img {
+      height: 320px;
+      width: 100%;
       overflow: hidden;
-      background: var(--off-white);
-      margin-bottom: 1.15rem;
     }
 
-    .art-plate-img img {
+    .gallery-plate-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.8s ease;
+      transition: transform 0.6s ease;
     }
 
-    .art-plate:hover .art-plate-img img {
-      transform: scale(1.05);
-    }
+    .gallery-plate:hover .gallery-plate-img img { transform: scale(1.05); }
 
-    .art-plate-num {
-      font-size: 0.66rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.4rem;
-      display: block;
-    }
+    .gallery-plate-body { padding: 1.5rem; }
 
-    .art-plate-verse {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-style: italic;
-      line-height: 1.35;
-      color: var(--ink);
-    }
-
-    /* =========================================
-       5. SWISS EDITORIAL GRID SECTIONS
-       ========================================= */
-    .section-wrap {
-      max-width: 1320px;
-      margin: 0 auto;
-      padding: 5rem 1.25rem;
-    }
-
-    @media (min-width: 960px) {
-      .section-wrap {
-        padding: 7.5rem 3.5rem;
-      }
-    }
-
-    .section-top-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      padding-bottom: 3.5rem;
-      border-bottom: 1px solid var(--line-dark);
-    }
-
-    @media (min-width: 960px) {
-      .section-top-grid {
-        grid-template-columns: 0.35fr 0.65fr;
-        align-items: end;
-      }
-    }
-
-    .section-summary {
-      font-size: 1.05rem;
-      color: var(--ink-muted);
-      max-width: 560px;
-      font-weight: 300;
-    }
-
-    /* Selected Poems — Sharp Architectural Columns */
-    .poems-editorial-list {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 960px) {
-      .poems-editorial-list {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .poem-column {
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--line-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: background-color 0.3s ease;
-    }
-
-    @media (min-width: 960px) {
-      .poem-column {
-        padding: 3rem 2.25rem;
-        border-right: 1px solid var(--line-dark);
-      }
-      .poem-column:first-child {
-        padding-left: 0;
-      }
-      .poem-column:last-child {
-        border-right: none;
-        padding-right: 0;
-      }
-    }
-
-    .poem-index {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-      margin-bottom: 1.25rem;
-      display: block;
-    }
-
-    .poem-heading {
-      font-family: var(--serif);
-      font-size: 2rem;
-      font-weight: 400;
-      line-height: 1.15;
-      margin-bottom: 1.1rem;
-    }
-
-    .poem-quote {
+    .plate-quote {
       font-family: var(--serif);
       font-size: 1.3rem;
       font-style: italic;
-      color: var(--ink-muted);
-      line-height: 1.55;
-      margin-bottom: 2.25rem;
-    }
-
-    .sharp-link {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding-bottom: 0.3rem;
-      border-bottom: 1px solid var(--ink);
-      width: fit-content;
-      transition: color 0.25s ease, border-color 0.25s ease;
-    }
-
-    .sharp-link:hover {
-      color: var(--accent);
-      border-color: var(--accent);
+      color: var(--text-main);
+      margin-top: 0.5rem;
     }
 
     /* =========================================
-       6. THE COLLECTIONS (CRISP ARCHIVAL PAPER)
+       5. FOOTER & NEWSLETTER
        ========================================= */
-    .collections-surface {
-      background-color: var(--off-white);
-      border-top: 1px solid var(--line-dark);
-      border-bottom: 1px solid var(--line-dark);
-    }
-
-    .collection-item {
-      padding: 2.5rem 0;
-      border-bottom: 1px solid var(--line-dark);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1rem;
-      align-items: baseline;
-    }
-
-    .collection-item:last-child {
-      border-bottom: none;
-    }
-
-    @media (min-width: 960px) {
-      .collection-item {
-        grid-template-columns: 0.7fr 1.5fr 2fr auto;
-        gap: 2.5rem;
-        padding: 3rem 0;
-      }
-    }
-
-    .collection-code {
-      font-size: 0.7rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .collection-title {
-      font-family: var(--serif);
-      font-size: 2.1rem;
-      font-weight: 400;
-    }
-
-    .collection-desc {
-      font-size: 0.98rem;
-      color: var(--ink-muted);
-      font-weight: 300;
-    }
-
-    /* =========================================
-       7. THE POET'S PHILOSOPHY (OBSIDIAN MONOLITH)
-       ========================================= */
-    .philosophy-monolith {
-      background-color: var(--espresso);
-      color: var(--white);
-    }
-
-    .philosophy-layout {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    @media (min-width: 960px) {
-      .philosophy-layout {
-        grid-template-columns: 0.85fr 1.15fr;
-        gap: 5rem;
-      }
-    }
-
-    .philosophy-portrait {
-      border: 1px solid var(--line-light);
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-    }
-
-    .philosophy-portrait img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .philosophy-title {
-      font-family: var(--serif);
-      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.08;
-      margin: 1rem 0 1.75rem;
-    }
-
-    .philosophy-body {
-      font-size: 1.08rem;
-      line-height: 1.8;
-      color: var(--paper-muted);
-      font-weight: 300;
-      margin-bottom: 1.25rem;
-    }
-
-    .philosophy-footer-line {
-      margin-top: 2.25rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--line-light);
-      font-family: var(--serif);
-      font-size: 1.5rem;
-      font-style: italic;
-      color: var(--white);
-    }
-
-    /* =========================================
-       8. AUDIO READINGS & JOURNAL
-       ========================================= */
-    .audio-row {
-      padding: 2rem 0;
-      border-bottom: 1px solid var(--line-dark);
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    @media (min-width: 768px) {
-      .audio-row {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 2.5rem 0;
-      }
-    }
-
-    .audio-track-title {
-      font-family: var(--serif);
-      font-size: 1.85rem;
-      font-weight: 400;
-      margin-top: 0.25rem;
-    }
-
-    .audio-trigger {
-      background: var(--espresso);
-      color: var(--white);
-      border: 1px solid var(--espresso);
-      padding: 0.85rem 1.65rem;
-      font-family: var(--sans);
-      font-size: 0.7rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-      width: fit-content;
-      transition: all 0.25s ease;
-    }
-
-    .audio-trigger:hover,
-    .audio-trigger.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--white);
-    }
-
-    /* Journal 3-Column Sharp Grid */
-    .journal-columns {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 960px) {
-      .journal-columns {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    .journal-entry {
-      padding: 2.25rem 0;
-      border-bottom: 1px solid var(--line-dark);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    @media (min-width: 960px) {
-      .journal-entry {
-        padding: 2.75rem 2.25rem;
-        border-right: 1px solid var(--line-dark);
-      }
-      .journal-entry:first-child { padding-left: 0; }
-      .journal-entry:last-child { border-right: none; padding-right: 0; }
-    }
-
-    .journal-heading {
-      font-family: var(--serif);
-      font-size: 1.75rem;
-      font-weight: 400;
-      margin: 0.65rem 0 0.85rem;
-    }
-
-    .journal-excerpt {
-      font-size: 0.95rem;
-      color: var(--ink-muted);
-      font-weight: 300;
-      margin-bottom: 2rem;
-    }
-
-    /* =========================================
-       9. COLLABORATIONS & FOOTER
-       ========================================= */
-    .enquiry-band {
-      background: var(--off-white);
-      border-top: 1px solid var(--line-dark);
-      text-align: center;
-    }
-
-    .enquiry-inner {
-      max-width: 740px;
-      margin: 0 auto;
-    }
-
-    .site-footer {
-      background: var(--espresso);
-      color: var(--white);
-      padding: 5rem 1.25rem 2.5rem;
-    }
-
-    @media (min-width: 960px) {
-      .site-footer {
-        padding: 6.5rem 3.5rem 3rem;
-      }
-    }
-
-    .footer-container {
+    footer {
+      background: var(--bg-deep);
+      padding: 5rem 1.5rem 2.5rem;
       max-width: 1320px;
       margin: 0 auto;
     }
 
-    .letter-split {
+    @media (min-width: 900px) { footer { padding: 6.5rem 3.5rem 3rem; } }
+
+    .footer-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2.5rem;
-      padding-bottom: 4rem;
-      border-bottom: 1px solid var(--line-light);
+      gap: 2rem;
+      align-items: center;
     }
 
-    @media (min-width: 960px) {
-      .letter-split {
-        grid-template-columns: 1.1fr 0.9fr;
-        align-items: end;
+    @media (min-width: 900px) {
+      .footer-box {
+        grid-template-columns: 1.2fr 1fr;
+        padding: 4.5rem;
       }
     }
 
-    .letter-box {
+    .newsletter-form {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
 
-    @media (min-width: 560px) {
-      .letter-box {
-        flex-direction: row;
-      }
+    @media (min-width: 540px) {
+      .newsletter-form { flex-direction: row; }
     }
 
-    .letter-field {
+    .newsletter-input {
       flex: 1;
-      background: transparent;
-      border: 1px solid var(--line-light);
-      padding: 0.95rem 1.2rem;
-      color: var(--white);
+      background: var(--bg-deep);
+      border: 1px solid var(--border-glass);
+      border-radius: 999px;
+      padding: 0.95rem 1.5rem;
+      color: var(--text-main);
       font-family: var(--sans);
       font-size: 0.9rem;
       outline: none;
     }
 
-    .letter-field:focus {
-      border-color: var(--accent);
-    }
+    .newsletter-input:focus { border-color: var(--accent-bronze); }
 
-    .footer-legal {
-      padding-top: 2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
+    .btn-submit {
+      background: var(--text-main);
+      color: var(--bg-deep);
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 2rem;
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--paper-muted);
+      cursor: pointer;
+      transition: background 0.3s ease;
     }
 
-    @media (min-width: 768px) {
-      .footer-legal {
-        flex-direction: row;
-        justify-content: space-between;
-      }
-    }
-
-    /* Subtle Fade Reveal */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-
-    .reveal.in-view {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .btn-submit:hover { background: var(--accent-bronze); color: var(--text-main); }
   </style>
 </head>
 <body>
@@ -949,449 +477,230 @@
        ========================================= -->
   <header class="site-header">
     <a href="index.html" class="logo">ADI POETRY</a>
-
     <nav class="desktop-nav">
-      <a href="index.html" class="active">01 · Index</a>
-      <a href="works.html">02 · Works</a>
-      <a href="audio.html">03 · Audio</a>
-      <a href="journal.html">04 · Journal</a>
-      <a href="about.html">05 · About & Enquiries</a>
+      <a href="index.html" class="active">Index</a>
+      <a href="works.html">Works & Collections</a>
+      <a href="audio.html">Audio Readings</a>
+      <a href="journal.html">Journal</a>
+      <a href="about.html">About & Bookings</a>
     </nav>
-
-    <button class="menu-trigger" id="openNav">Menu</button>
+    <button class="menu-trigger" id="openMenu">Menu</button>
   </header>
 
-  <!-- Mobile Fullscreen Menu -->
+  <!-- Mobile Menu Overlay -->
   <div class="mobile-overlay" id="mobileNav">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <span class="logo">ADI POETRY</span>
-      <button class="menu-trigger" id="closeNav">Close ×</button>
+      <button class="menu-trigger" id="closeMenu">Close ×</button>
     </div>
-
-    <div class="mobile-overlay-links">
-      <a href="index.html"><span>01</span> Index</a>
-      <a href="works.html"><span>02</span> Works & Collections</a>
-      <a href="audio.html"><span>03</span> Audio Readings</a>
-      <a href="journal.html"><span>04</span> Journal / Notes</a>
-      <a href="about.html"><span>05</span> About & Bookings</a>
+    <div class="mobile-links">
+      <a href="index.html">01. Index</a>
+      <a href="works.html">02. Works</a>
+      <a href="audio.html">03. Audio</a>
+      <a href="journal.html">04. Journal</a>
+      <a href="about.html">05. About</a>
     </div>
-
-    <div style="font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-muted);">
+    <div style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">
       Love, Held With Courage
     </div>
   </div>
 
   <!-- =========================================
-       SECTION 1: GEOMETRIC EDITORIAL HERO
+       BENTO-GRID HERO SECTION
        ========================================= -->
-  <section class="hero">
-    <div class="hero-geometry" aria-hidden="true">
-      <div class="wire-crosshair-v"></div>
-      <div class="wire-diamond"></div>
-      <div class="wire-circle"></div>
-    </div>
-
-    <div class="hero-meta-bar">
-      <span>A Living Collection</span>
-      <span>Poems · Readings · Notes</span>
-    </div>
-
-    <div class="hero-stage">
-      <div class="hero-copy">
-        <span class="hero-label">ADI POETRY · ARCHIVE 2026</span>
-        <h1 class="hero-headline">Love, held<br><em>with courage</em></h1>
-        <p class="hero-lead">
-          Poems on desire, devotion, vulnerability, and the many ways masculinity learns to love. A living collection of poems, readings, and notes.
-        </p>
-
-        <div class="hero-cta-group">
-          <a href="works.html" class="btn-sharp-white">Read the Works →</a>
-          <a href="#audio-readings" class="btn-sharp-ghost">▶ Listen to Readings</a>
+  <main class="hero-section">
+    <div class="bento-grid">
+      
+      <!-- Card 1: Main Title (Spans 2 Columns) -->
+      <div class="bento-card span-2 bento-intro">
+        <div>
+          <span class="card-eyebrow">Adi Poetry · Archive 2026</span>
+          <h1>Love, held <em>with courage</em></h1>
+          <p>
+            Poems on desire, devotion, vulnerability, and the many ways masculinity learns to love. A living collection of words and voice.
+          </p>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
+          <a href="works.html" class="audio-play-trigger" style="background: var(--text-main); color: var(--bg-deep);">Enter Reading Room →</a>
+          <a href="#audio-section" class="audio-play-trigger" style="background: transparent; border: 1px solid var(--border-glass); color: var(--text-main);">▶ Listen to Voice</a>
         </div>
       </div>
 
-      <!-- Switched Hero Portrait -->
-      <div class="hero-visual">
-        <div class="hero-img-frame">
-          <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Adi Poetry — Editorial Portrait" />
+      <!-- Card 2: Portrait Photo -->
+      <div class="bento-card bento-portrait">
+        <img src="WhatsApp%20Image%202026-11-12%20at%201.27.31%20PM.jpeg" alt="Adi Poetry Portrait" />
+      </div>
+
+      <!-- Card 3: Selected Poem Teaser -->
+      <div class="bento-card bento-poems">
+        <div>
+          <span class="card-eyebrow">Featured Excerpt</span>
+          <h3>Where the Distance Ends</h3>
+          <blockquote>“There is a geography to waiting— measured not in miles or hours, but in the quiet space...”</blockquote>
         </div>
-        <div class="hero-img-caption">
-          <span>Plate I · Adi Poetry</span>
-          <span>Tenderness as Practice</span>
+        <a href="works.html" style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bronze); font-weight: 600;">Read in full →</a>
+      </div>
+
+      <!-- Card 4: Audio Feature Teaser -->
+      <div class="bento-card bento-audio" id="audio-section">
+        <div>
+          <span class="card-eyebrow">Spoken Word Archive</span>
+          <h3 style="font-family: var(--serif); font-size: 1.8rem; font-weight: 400; margin-top: 0.5rem;">Audio Reading One</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">03:24 · Spoken Word & Ambient Tone</p>
+        </div>
+        <button class="audio-play-trigger" id="playHeroAudio">▶ Play slowly</button>
+        <audio id="heroAudio" src="audio-reading-1.mp3" preload="none"></audio>
+      </div>
+
+      <!-- Card 5: Quick Navigation / Collections -->
+      <div class="bento-card bento-links">
+        <span class="card-eyebrow">The Core Collections</span>
+        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
+          <a href="works.html" class="bento-link-row"><span>I. Longing</span> <span>→</span></a>
+          <a href="works.html" class="bento-link-row"><span>II. Devotion</span> <span>→</span></a>
+          <a href="works.html" class="bento-link-row"><span>III. Vulnerability</span> <span>→</span></a>
         </div>
       </div>
-    </div>
 
-    <div class="hero-meta-bar">
-      <span>Desire · Devotion · Vulnerability</span>
-      <span>Scroll ↓</span>
     </div>
-  </section>
+  </main>
 
   <!-- =========================================
-       SECTION 2: SEAMLESS SIDEWAYS GALLERY (SWITCHED IMAGES)
+       SEAMLESS SIDEWAYS MARQUEE (BELOW BENTO)
        ========================================= -->
-  <section class="gallery-strip">
-    <div class="strip-header">
+  <section class="marquee-section" aria-label="Visual Gallery">
+    <div class="marquee-header">
       <div>
-        <span class="eyebrow">Visual & Poetic Fragments</span>
-        <h2 class="display-title">Light still finds the open hand</h2>
+        <span class="card-eyebrow">Visual Fragments</span>
+        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;">Light still finds the open hand</h2>
       </div>
-      <p style="font-size: 0.88rem; color: var(--ink-muted); max-width: 340px;">
-        A continuous visual rhythm. Touch or hover any plate to pause and read.
+      <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 360px;">
+        Hover to pause. A visual journey through quiet moments and handwritten notes.
       </p>
     </div>
 
-    <div class="marquee-track">
+    <div class="marquee-track-wrap">
       <!-- Group 1 -->
       <div class="marquee-set">
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-11-12%20at%201.28.05%20PM.jpeg" alt="Adi Poetry — Fragment I" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Gallery Plate 1" />
           </div>
-          <span class="art-plate-num">Fragment 01 · On Hope</span>
-          <p class="art-plate-verse">“Even after winter, the root remembers how to reach for warmth.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment I</span>
+            <p class="plate-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
+          </div>
         </article>
 
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Fragment II" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Gallery Plate 2" />
           </div>
-          <span class="art-plate-num">Fragment 02 · On Devotion</span>
-          <p class="art-plate-verse">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment II</span>
+            <p class="plate-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+          </div>
         </article>
 
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Fragment III" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Gallery Plate 3" />
           </div>
-          <span class="art-plate-num">Fragment 03 · On Becoming</span>
-          <p class="art-plate-verse">“Nothing honest you have ever loved is ever truly wasted.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment III</span>
+            <p class="plate-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
+          </div>
         </article>
       </div>
 
-      <!-- Group 2 (Seamless Loop) -->
+      <!-- Group 2 (Seamless Clone) -->
       <div class="marquee-set" aria-hidden="true">
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-11-12%20at%201.28.05%20PM.jpeg" alt="Adi Poetry — Fragment I" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Gallery Plate 1" />
           </div>
-          <span class="art-plate-num">Fragment 01 · On Hope</span>
-          <p class="art-plate-verse">“Even after winter, the root remembers how to reach for warmth.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment I</span>
+            <p class="plate-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
+          </div>
         </article>
 
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Fragment II" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Gallery Plate 2" />
           </div>
-          <span class="art-plate-num">Fragment 02 · On Devotion</span>
-          <p class="art-plate-verse">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment II</span>
+            <p class="plate-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+          </div>
         </article>
 
-        <article class="art-plate">
-          <div class="art-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Fragment III" />
+        <article class="gallery-plate">
+          <div class="gallery-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Gallery Plate 3" />
           </div>
-          <span class="art-plate-num">Fragment 03 · On Becoming</span>
-          <p class="art-plate-verse">“Nothing honest you have ever loved is ever truly wasted.”</p>
+          <div class="gallery-plate-body">
+            <span class="card-eyebrow">Fragment III</span>
+            <p class="plate-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
   <!-- =========================================
-       SECTION 3: SELECTED POEMS (SWISS COLUMNS)
+       FOOTER & NEWSLETTER
        ========================================= -->
-  <section class="section-wrap reveal">
-    <div class="section-top-grid">
+  <footer>
+    <div class="footer-box">
       <div>
-        <span class="eyebrow">Selected Poems</span>
-        <h2 class="display-title">Poems for the tender and the brave</h2>
-      </div>
-      <p class="section-summary">
-        Intimate, sensual, and emotionally assured, these poems make room for the feeling we are often taught to hide.
-      </p>
-    </div>
-
-    <div class="poems-editorial-list">
-      <article class="poem-column">
-        <div>
-          <span class="poem-index">Featured Poem · 01</span>
-          <h3 class="poem-heading">Featured poem title</h3>
-          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
-        </div>
-        <a href="works.html" class="sharp-link">Read in full →</a>
-      </article>
-
-      <article class="poem-column">
-        <div>
-          <span class="poem-index">Featured Poem · 02</span>
-          <h3 class="poem-heading">Featured poem title</h3>
-          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
-        </div>
-        <a href="works.html" class="sharp-link">Read in full →</a>
-      </article>
-
-      <article class="poem-column">
-        <div>
-          <span class="poem-index">Featured Poem · 03</span>
-          <h3 class="poem-heading">Featured poem title</h3>
-          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
-        </div>
-        <a href="works.html" class="sharp-link">Read in full →</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 4: THE COLLECTIONS
-       ========================================= -->
-  <section class="collections-surface reveal">
-    <div class="section-wrap">
-      <div class="section-top-grid">
-        <div>
-          <span class="eyebrow">The Collections</span>
-          <h2 class="display-title">The collection moves from longing to devotion</h2>
-        </div>
-        <p class="section-summary">
-          Three bodies of work trace the changing temperature of love: its first ache, its difficult clarity, and the steadiness that follows.
+        <span class="card-eyebrow" style="margin-bottom: 0.5rem; display: block;">The Letter</span>
+        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; margin-bottom: 0.75rem;">Stay close to the work</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 300;">
+          New poems, audio readings, and selected appearances, sent with care.
         </p>
       </div>
 
-      <div>
-        <div class="collection-item">
-          <span class="collection-code">Collection Title One</span>
-          <h3 class="collection-title">Collection title one</h3>
-          <p class="collection-desc">A one-line emotional premise about longing, distance, and the desire to be met.</p>
-          <a href="works.html" class="sharp-link">Read more →</a>
-        </div>
-
-        <div class="collection-item">
-          <span class="collection-code">Collection Title Two</span>
-          <h3 class="collection-title">Collection title two</h3>
-          <p class="collection-desc">A one-line emotional premise about identity, risk, and the courage to stay present.</p>
-          <a href="works.html" class="sharp-link">Read more →</a>
-        </div>
-
-        <div class="collection-item">
-          <span class="collection-code">Collection Title Three</span>
-          <h3 class="collection-title">Collection title three</h3>
-          <p class="collection-desc">A one-line emotional premise about devotion, tenderness, and becoming together.</p>
-          <a href="works.html" class="sharp-link">Read more →</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 5: THE POET'S PHILOSOPHY (SWITCHED IMAGE)
-       ========================================= -->
-  <section class="philosophy-monolith reveal">
-    <div class="section-wrap">
-      <div class="philosophy-layout">
-        <div class="philosophy-portrait">
-          <img src="WhatsApp%20Image%202026-11-12%20at%201.27.31%20PM.jpeg" alt="Adi Poetry — The Poet's Philosophy" />
-        </div>
-
-        <div>
-          <span class="eyebrow">The Poet's Philosophy</span>
-          <h2 class="philosophy-title">A masculinity spacious enough for tenderness</h2>
-          <p class="philosophy-body">
-            Adi Poetry writes toward a masculinity that can hold contradiction: desire without possession, strength without hardness, and vulnerability as a practice rather than a confession.
-          </p>
-          <p class="philosophy-body">
-            Here, love is not an escape from the self. It is one of the ways the self becomes more honest.
-          </p>
-          <div class="philosophy-footer-line">
-            Love as strength. Vulnerability as practice. Masculinity lived with nuance.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 6: AUDIO READINGS (ZERO BACKEND)
-       ========================================= -->
-  <section class="section-wrap reveal" id="audio-readings">
-    <div class="section-top-grid">
-      <div>
-        <span class="eyebrow">Audio Readings</span>
-        <h2 class="display-title">Hear the poems in the voice that made them</h2>
-      </div>
-      <p class="section-summary">
-        Let the pace loosen. Let the voice carry what the page leaves open.
-      </p>
+      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Welcome to The Letter.'); this.reset();">
+        <input type="email" class="newsletter-input" placeholder="Your email address" required />
+        <button type="submit" class="btn-submit">Subscribe</button>
+      </form>
     </div>
 
-    <div>
-      <div class="audio-row">
-        <div>
-          <span class="eyebrow">Audio Reading Title One · [03:24]</span>
-          <h3 class="audio-track-title">Audio reading title one</h3>
-        </div>
-        <button class="audio-trigger" data-audio="track-1">▶ Play slowly</button>
-        <audio id="track-1" src="audio-reading-1.mp3" preload="none"></audio>
-      </div>
-
-      <div class="audio-row">
-        <div>
-          <span class="eyebrow">Audio Reading Title Two · [04:10]</span>
-          <h3 class="audio-track-title">Audio reading title two</h3>
-        </div>
-        <button class="audio-trigger" data-audio="track-2">▶ Play slowly</button>
-        <audio id="track-2" src="audio-reading-2.mp3" preload="none"></audio>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 7: JOURNAL / NOTES
-       ========================================= -->
-  <section class="section-wrap reveal" style="padding-top: 0;">
-    <div class="section-top-grid">
-      <div>
-        <span class="eyebrow">Journal / Notes</span>
-        <h2 class="display-title">Notes on love, identity, and becoming</h2>
-      </div>
-      <p class="section-summary">
-        Short essays and journal entries for the places where intimacy meets the work of changing.
-      </p>
-    </div>
-
-    <div class="journal-columns">
-      <article class="journal-entry">
-        <div>
-          <span class="eyebrow">Essay / Journal</span>
-          <h3 class="journal-heading">Article Title</h3>
-          <p class="journal-excerpt">
-            Short summary about intimacy, the risks of being known, and what desire asks us to notice.
-          </p>
-        </div>
-        <a href="journal.html" class="sharp-link">Read article →</a>
-      </article>
-
-      <article class="journal-entry">
-        <div>
-          <span class="eyebrow">Essay / Journal</span>
-          <h3 class="journal-heading">Article Title</h3>
-          <p class="journal-excerpt">
-            Short summary about masculinity, emotional inheritance, and the permission to soften.
-          </p>
-        </div>
-        <a href="journal.html" class="sharp-link">Read article →</a>
-      </article>
-
-      <article class="journal-entry">
-        <div>
-          <span class="eyebrow">Essay / Journal</span>
-          <h3 class="journal-heading">Article Title</h3>
-          <p class="journal-excerpt">
-            Short summary about becoming, the beloved self, and the life built after certainty.
-          </p>
-        </div>
-        <a href="journal.html" class="sharp-link">Read article →</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 8: READINGS · CONVERSATIONS · COLLABORATIONS
-       ========================================= -->
-  <section class="enquiry-band reveal">
-    <div class="section-wrap">
-      <div class="enquiry-inner">
-        <span class="eyebrow" style="margin-bottom: 1rem;">Readings · Conversations · Collaborations</span>
-        <h2 class="display-title" style="margin-bottom: 1.25rem;">Bring the work into the room</h2>
-        <p class="section-summary" style="margin: 0 auto 2.25rem;">
-          For readers, curators, festivals, and collaborators: enquire about readings, conversations, commissions, and creative partnerships. Invite the poems into a setting with its own charge, and let the exchange shape what comes next.
-        </p>
-        <a href="about.html" class="btn-sharp-white" style="background: var(--espresso); color: var(--white); border-color: var(--espresso);">
-          Enquire Now →
-        </a>
-        <div style="margin-top: 1.5rem; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);">
-          Readings, conversations, commissions, and creative partnerships.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================
-       SECTION 9: THE LETTER & FOOTER
-       ========================================= -->
-  <footer class="site-footer">
-    <div class="footer-container">
-      <div class="letter-split">
-        <div>
-          <span class="eyebrow" style="margin-bottom: 0.75rem;">The Letter</span>
-          <h2 class="display-title" style="margin-bottom: 0.75rem;">Stay close to the work</h2>
-          <p style="color: var(--paper-muted); font-weight: 300; max-width: 460px;">
-            New poems, audio readings, journal notes, and selected appearances, sent with care.
-          </p>
-        </div>
-
-        <form class="letter-box" onsubmit="event.preventDefault(); alert('Welcome to The Letter by Adi Poetry.'); this.reset();">
-          <input type="email" class="letter-field" placeholder="Your email address" required />
-          <button type="submit" class="btn-sharp-white">Subscribe</button>
-        </form>
-      </div>
-
-      <div class="footer-legal">
-        <span>© 2026 ADI POETRY · All Rights Reserved</span>
-        <span>Love, Held With Courage</span>
-      </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);">
+      <span>© 2026 ADI POETRY</span>
+      <span>Love, Held With Courage</span>
     </div>
   </footer>
 
   <!-- =========================================
-       FRONTEND SCRIPTS
+       SCRIPTS
        ========================================= -->
   <script>
-    // Mobile Menu Toggle
-    const openNav = document.getElementById('openNav');
-    const closeNav = document.getElementById('closeNav');
+    // Mobile Navigation Toggle
+    const openMenu = document.getElementById('openMenu');
+    const closeMenu = document.getElementById('closeMenu');
     const mobileNav = document.getElementById('mobileNav');
 
-    openNav.addEventListener('click', () => mobileNav.classList.add('open'));
-    closeNav.addEventListener('click', () => mobileNav.classList.remove('open'));
+    openMenu.addEventListener('click', () => mobileNav.classList.add('open'));
+    closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
 
-    // Smooth Scroll Reveal
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('in-view');
-      });
-    }, { threshold: 0.1 });
+    // Audio Play Trigger
+    const playBtn = document.getElementById('playHeroAudio');
+    const audio = document.getElementById('heroAudio');
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-
-    // Frontend Audio Player
-    const triggers = document.querySelectorAll('.audio-trigger');
-    triggers.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const audio = document.getElementById(btn.getAttribute('data-audio'));
-
-        document.querySelectorAll('audio').forEach((a) => {
-          if (a !== audio) a.pause();
-        });
-        triggers.forEach((b) => {
-          if (b !== btn) {
-            b.classList.remove('active');
-            b.textContent = '▶ Play slowly';
-          }
-        });
-
-        if (audio.paused) {
-          audio.play().catch(() => {
-            alert('Upload "' + audio.getAttribute('src') + '" to your GitHub folder to play this recording.');
-          });
-          btn.classList.add('active');
-          btn.textContent = '❚❚ Pause';
-        } else {
-          audio.pause();
-          btn.classList.remove('active');
-          btn.textContent = '▶ Play slowly';
-        }
-      });
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play().catch(() => alert('Please upload audio-reading-1.mp3 to your repository.'));
+        playBtn.textContent = '❚❚ Pause';
+        playBtn.style.background = 'var(--accent-bronze)';
+        playBtn.style.color = 'var(--text-main)';
+      } else {
+        audio.pause();
+        playBtn.textContent = '▶ Play slowly';
+        playBtn.style.background = 'var(--text-main)';
+        playBtn.style.color = 'var(--bg-deep)';
+      }
     });
   </script>
 </body>
