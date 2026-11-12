@@ -4,31 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ADI POETRY — Love, Held With Courage</title>
-  
-  <!-- Editorial Fonts: Cormorant Garamond (Poetry/Serif) & Plus Jakarta Sans (Clean UI) -->
+
+  <!-- World-Class Literary Fonts: Cormorant Garamond (High-Fashion Editorial Serif) & Inter (Swiss Precision Sans) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
   <style>
     /* =========================================
-       1. DESIGN TOKENS & PALETTE (BROWN & WHITE)
+       1. SHARP GALLERY TOKENS (OBSIDIAN BROWN & PURE WHITE)
        ========================================= */
     :root {
-      --bg-ivory: #FAF7F2;          /* Crisp Warm White */
-      --bg-cream: #F1EAE0;          /* Soft Sand / Card Surface */
-      --bg-espresso: #1E1611;       /* Deep Rich Brown */
-      --bg-cocoa: #2C211A;          /* Elevated Dark Brown */
-      --text-dark: #1E1611;         /* Sharp Espresso Ink */
-      --text-muted: #635347;        /* Warm Earth Gray-Brown */
-      --text-light: #FAF7F2;        /* Crisp White Ink */
-      --text-light-muted: #D2C5B8;  /* Soft Warm Beige */
-      --accent-bronze: #B67B48;     /* Hopeful Burnished Gold-Brown */
-      --border-light: rgba(30, 22, 17, 0.14);
-      --border-dark: rgba(250, 247, 242, 0.18);
-      
-      --font-serif: 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      --white: #FFFFFF;               /* Pure Gallery White */
+      --off-white: #F7F6F4;           /* Crisp Archival Paper */
+      --espresso: #120D0A;            /* Deep Obsidian Espresso */
+      --espresso-soft: #1E1612;       /* Elevated Dark Surface */
+      --ink: #120D0A;                 /* Primary Sharp Ink */
+      --ink-muted: #5C5049;           /* Editorial Muted Brown-Gray */
+      --paper-muted: #B8ABA2;         /* Soft Warm Stone on Dark */
+      --accent: #9E6234;              /* Burnished Copper-Brown */
+      --line-dark: rgba(18, 13, 10, 0.14);
+      --line-light: rgba(255, 255, 255, 0.16);
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * {
@@ -37,11 +36,16 @@
       box-sizing: border-box;
     }
 
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
     body {
-      background-color: var(--bg-ivory);
-      color: var(--text-dark);
-      font-family: var(--font-sans);
-      line-height: 1.65;
+      background-color: var(--white);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -57,903 +61,882 @@
     }
 
     /* =========================================
-       2. FLOATING EDITORIAL HEADER (5-PAGE NAV)
+       2. ARCHITECTURAL HEADER (MOBILE-FIRST)
        ========================================= */
-    header {
+    .site-header {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       z-index: 1000;
-      padding: 1.15rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      pointer-events: none;
+      padding: 1.1rem 1.25rem;
+      background: rgba(18, 13, 10, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line-light);
+      color: var(--white);
     }
 
-    .brand-pill, .nav-pill {
-      pointer-events: auto;
-      background: rgba(30, 22, 17, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      color: var(--text-light);
-      border: 1px solid var(--border-dark);
-      border-radius: 999px;
-      padding: 0.65rem 1.35rem;
+    .logo {
+      font-family: var(--sans);
       font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      font-weight: 600;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      font-weight: 500;
-      transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    .brand-pill:hover {
-      background: var(--accent-bronze);
-      color: var(--bg-espresso);
-    }
-
-    .nav-links {
+    .desktop-nav {
       display: none;
-      gap: 1.6rem;
-      align-items: center;
+      gap: 2.2rem;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--paper-muted);
     }
 
-    .nav-links a {
-      position: relative;
-      padding-bottom: 2px;
+    .desktop-nav a {
       transition: color 0.25s ease;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--accent-bronze);
+    .desktop-nav a:hover,
+    .desktop-nav a.active {
+      color: var(--white);
     }
 
-    .menu-toggle {
+    .menu-trigger {
       background: none;
-      border: none;
-      color: var(--text-light);
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
+      border: 1px solid var(--line-light);
+      color: var(--white);
+      padding: 0.45rem 0.9rem;
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
     }
 
-    @media (min-width: 900px) {
-      header {
-        padding: 1.5rem 3rem;
+    @media (min-width: 960px) {
+      .site-header {
+        padding: 1.25rem 3.5rem;
       }
-      .nav-links {
+      .desktop-nav {
         display: flex;
       }
-      .menu-toggle {
+      .menu-trigger {
         display: none;
       }
     }
 
-    /* Mobile Drawer */
-    .mobile-menu {
+    /* Fullscreen Mobile Overlay */
+    .mobile-overlay {
       position: fixed;
       inset: 0;
-      background: var(--bg-espresso);
-      color: var(--text-light);
-      z-index: 999;
+      background: var(--espresso);
+      color: var(--white);
+      z-index: 1200;
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+      justify-content: space-between;
+      padding: 1.5rem 1.5rem 3rem;
+      transform: translateY(-100%);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .mobile-menu.open {
-      opacity: 1;
-      pointer-events: auto;
+    .mobile-overlay.open {
+      transform: translateY(0);
     }
 
-    .mobile-menu a {
-      font-family: var(--font-serif);
-      font-size: 2.4rem;
-      font-style: italic;
-      transition: color 0.25s ease;
+    .mobile-overlay-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin: auto 0;
     }
 
-    .mobile-menu a:hover {
-      color: var(--accent-bronze);
+    .mobile-overlay-links a {
+      font-family: var(--serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1.1;
+      border-bottom: 1px solid var(--line-light);
+      padding-bottom: 0.75rem;
+    }
+
+    .mobile-overlay-links a span {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-right: 0.75rem;
+      vertical-align: middle;
     }
 
     /* =========================================
-       3. HERO SECTION (GEOMETRIC EDITORIAL)
+       3. HERO — AGENTURA-INSPIRED GEOMETRIC MONOLITH
        ========================================= */
     .hero {
       position: relative;
-      min-height: 100vh;
-      background-color: var(--bg-espresso);
-      color: var(--text-light);
+      min-height: 100svh;
+      background-color: var(--espresso);
+      color: var(--white);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 6.5rem 1.5rem 2.5rem;
+      padding: 5.5rem 1.25rem 2rem;
       overflow: hidden;
     }
 
-    /* Geometric Vector Lines Inspired by Editorial Frame */
-    .geo-overlay {
+    /* Crisp Geometric Wireframe Overlay */
+    .hero-geometry {
       position: absolute;
       inset: 0;
       pointer-events: none;
       display: flex;
       justify-content: center;
       align-items: center;
-      opacity: 0.24;
+      z-index: 1;
     }
 
-    .geo-diamond {
-      width: 320px;
-      height: 320px;
-      border: 1px solid var(--text-light);
+    .wire-diamond {
+      position: absolute;
+      width: 280px;
+      height: 280px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
       transform: rotate(45deg);
+    }
+
+    .wire-circle {
       position: absolute;
-    }
-
-    .geo-diamond.outer {
-      width: 520px;
-      height: 520px;
-      border-color: var(--accent-bronze);
-    }
-
-    .geo-circle {
-      width: 340px;
-      height: 340px;
-      border: 1px solid var(--text-light);
+      width: 310px;
+      height: 310px;
+      border: 1px solid rgba(158, 98, 52, 0.28);
       border-radius: 50%;
+    }
+
+    .wire-crosshair-v {
       position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: rgba(255, 255, 255, 0.06);
     }
 
-    @media (min-width: 768px) {
+    @media (min-width: 960px) {
       .hero {
-        padding: 7.5rem 3rem 3rem;
+        padding: 6.5rem 3.5rem 2.5rem;
       }
-      .geo-diamond {
-        width: 440px;
-        height: 440px;
+      .wire-diamond {
+        width: 480px;
+        height: 480px;
       }
-      .geo-diamond.outer {
-        width: 680px;
-        height: 680px;
-      }
-      .geo-circle {
-        width: 460px;
-        height: 460px;
+      .wire-circle {
+        width: 520px;
+        height: 520px;
       }
     }
 
-    .hero-corners-top, .hero-corners-bottom {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text-light-muted);
-    }
-
-    .hero-center {
+    .hero-meta-bar {
       position: relative;
       z-index: 3;
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      margin: auto 0;
-      padding: 2rem 0;
+      justify-content: space-between;
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--paper-muted);
     }
 
-    .hero-portrait-wrap {
+    .hero-stage {
       position: relative;
-      width: 240px;
-      height: 310px;
-      border-radius: 140px 140px 16px 16px;
-      overflow: hidden;
-      border: 1px solid rgba(250, 247, 242, 0.25);
-      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.55);
-      margin-bottom: 1.75rem;
+      z-index: 3;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin: auto 0;
+      padding: 1.5rem 0;
     }
 
-    @media (min-width: 768px) {
-      .hero-portrait-wrap {
-        width: 300px;
-        height: 390px;
+    @media (min-width: 960px) {
+      .hero-stage {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 4rem;
+        max-width: 1320px;
+        width: 100%;
+        margin: auto;
       }
     }
 
-    .hero-portrait-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: contrast(1.06) sepia(0.12);
-      transition: transform 1.2s ease;
+    .hero-copy {
+      order: 2;
+      text-align: left;
     }
 
-    .hero-portrait-wrap:hover img {
-      transform: scale(1.04);
+    @media (min-width: 960px) {
+      .hero-copy {
+        order: 1;
+      }
     }
 
-    .hero-kicker {
-      font-size: 0.78rem;
+    .hero-label {
+      display: inline-block;
+      font-size: 0.7rem;
       letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: var(--accent-bronze);
-      margin-bottom: 0.65rem;
-      font-weight: 600;
-    }
-
-    .hero-title {
-      font-family: var(--font-serif);
-      font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+      color: var(--accent);
+      margin-bottom: 1rem;
       font-weight: 500;
-      line-height: 1.04;
-      letter-spacing: -0.01em;
-      margin-bottom: 1.1rem;
     }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--accent-bronze);
-    }
-
-    .hero-subtitle {
-      max-width: 560px;
-      font-size: clamp(0.98rem, 1.5vw, 1.12rem);
-      color: var(--text-light-muted);
+    .hero-headline {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6.2rem);
       font-weight: 300;
-      margin-bottom: 2rem;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.35rem;
     }
 
-    .hero-actions {
+    .hero-headline em {
+      font-style: italic;
+      color: var(--paper-muted);
+    }
+
+    .hero-lead {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--paper-muted);
+      max-width: 480px;
+      font-weight: 300;
+      margin-bottom: 2.2rem;
+    }
+
+    .hero-cta-group {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
-      justify-content: center;
     }
 
-    .btn-primary {
-      background-color: var(--bg-ivory);
-      color: var(--bg-espresso);
-      padding: 0.9rem 1.85rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
+    .btn-sharp-white {
+      background: var(--white);
+      color: var(--espresso);
+      padding: 0.95rem 1.8rem;
+      font-size: 0.72rem;
       font-weight: 600;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      border: 1px solid var(--white);
       transition: all 0.3s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.6rem;
     }
 
-    .btn-primary:hover {
-      background-color: var(--accent-bronze);
-      color: var(--bg-espresso);
-      transform: translateY(-2px);
+    .btn-sharp-white:hover {
+      background: transparent;
+      color: var(--white);
     }
 
-    .btn-outline {
-      border: 1px solid rgba(250, 247, 242, 0.35);
-      color: var(--text-light);
-      padding: 0.9rem 1.85rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
+    .btn-sharp-ghost {
+      background: transparent;
+      color: var(--white);
+      padding: 0.95rem 1.8rem;
+      font-size: 0.72rem;
       font-weight: 500;
-      letter-spacing: 0.12em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
+      border: 1px solid var(--line-light);
       transition: all 0.3s ease;
     }
 
-    .btn-outline:hover {
-      border-color: var(--accent-bronze);
-      color: var(--accent-bronze);
+    .btn-sharp-ghost:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Switched Hero Portrait — Sharp Editorial Frame */
+    .hero-visual {
+      order: 1;
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 960px) {
+      .hero-visual {
+        order: 2;
+        max-width: 460px;
+      }
+    }
+
+    .hero-img-frame {
+      position: relative;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border: 1px solid var(--line-light);
+      background: var(--espresso-soft);
+    }
+
+    .hero-img-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: contrast(1.08);
+      transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .hero-img-frame:hover img {
+      transform: scale(1.03);
+    }
+
+    .hero-img-caption {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 0.65rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--paper-muted);
     }
 
     /* =========================================
-       4. SEAMLESS SIDEWAYS MARQUEE (HOPEFUL GALLERY)
+       4. SEAMLESS SIDEWAYS MARQUEE (GALLERY PLATES)
        ========================================= */
-    .marquee-section {
-      background-color: var(--bg-ivory);
+    .gallery-strip {
+      background: var(--white);
+      border-bottom: 1px solid var(--line-dark);
       padding: 4.5rem 0;
-      border-bottom: 1px solid var(--border-light);
       overflow: hidden;
     }
 
-    .marquee-header {
-      max-width: 1240px;
-      margin: 0 auto 2.5rem;
-      padding: 0 1.5rem;
+    .strip-header {
+      padding: 0 1.25rem 2.5rem;
+      max-width: 1320px;
+      margin: 0 auto;
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
 
-    @media (min-width: 768px) {
-      .marquee-header {
-        padding: 0 3rem;
+    @media (min-width: 960px) {
+      .strip-header {
+        padding: 0 3.5rem 3rem;
         flex-direction: row;
         justify-content: space-between;
         align-items: flex-end;
       }
     }
 
-    .section-eyebrow {
-      font-size: 0.75rem;
-      letter-spacing: 0.2em;
+    .eyebrow {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: var(--accent-bronze);
+      color: var(--accent);
       font-weight: 600;
       display: block;
-      margin-bottom: 0.45rem;
     }
 
-    .section-heading {
-      font-family: var(--font-serif);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 500;
-      line-height: 1.12;
-      color: var(--text-dark);
+    .display-title {
+      font-family: var(--serif);
+      font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
     }
 
-    .marquee-track-wrapper {
+    .marquee-track {
       display: flex;
       width: max-content;
-      animation: scrollSideways 38s linear infinite;
+      animation: glideLeft 42s linear infinite;
     }
 
-    .marquee-track-wrapper:hover {
+    .marquee-track:hover {
       animation-play-state: paused;
     }
 
-    @keyframes scrollSideways {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
+    @keyframes glideLeft {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
     }
 
-    .marquee-group {
+    .marquee-set {
       display: flex;
-      gap: 1.75rem;
-      padding-right: 1.75rem;
+      gap: 2rem;
+      padding-right: 2rem;
     }
 
-    .visual-card {
-      width: 290px;
-      background: var(--bg-cream);
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      overflow: hidden;
+    .art-plate {
+      width: 270px;
       flex-shrink: 0;
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border-right: 1px solid var(--line-dark);
+      padding-right: 2rem;
     }
 
     @media (min-width: 768px) {
-      .visual-card {
-        width: 350px;
+      .art-plate {
+        width: 360px;
       }
     }
 
-    .visual-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(30, 22, 17, 0.12);
-    }
-
-    .visual-card-img {
-      height: 360px;
-      width: 100%;
+    .art-plate-img {
+      aspect-ratio: 3 / 4;
       overflow: hidden;
+      background: var(--off-white);
+      margin-bottom: 1.15rem;
     }
 
-    .visual-card-img img {
+    .art-plate-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.7s ease;
+      transition: transform 0.8s ease;
     }
 
-    .visual-card:hover .visual-card-img img {
-      transform: scale(1.06);
+    .art-plate:hover .art-plate-img img {
+      transform: scale(1.05);
     }
 
-    .visual-card-body {
-      padding: 1.4rem 1.5rem;
-    }
-
-    .visual-card-tag {
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
+    .art-plate-num {
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--accent-bronze);
-      font-weight: 600;
+      color: var(--accent);
       margin-bottom: 0.4rem;
       display: block;
     }
 
-    .visual-card-quote {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
+    .art-plate-verse {
+      font-family: var(--serif);
+      font-size: 1.4rem;
       font-style: italic;
       line-height: 1.35;
-      color: var(--text-dark);
+      color: var(--ink);
     }
 
     /* =========================================
-       5. STANDARD CONTAINER & EDITORIAL SECTIONS
+       5. SWISS EDITORIAL GRID SECTIONS
        ========================================= */
-    .container {
-      max-width: 1240px;
+    .section-wrap {
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 5.5rem 1.5rem;
+      padding: 5rem 1.25rem;
     }
 
-    @media (min-width: 768px) {
-      .container {
-        padding: 7rem 3rem;
+    @media (min-width: 960px) {
+      .section-wrap {
+        padding: 7.5rem 3.5rem;
       }
     }
 
-    .section-intro {
-      max-width: 680px;
-      margin-bottom: 3.5rem;
-    }
-
-    .section-desc {
-      margin-top: 1rem;
-      font-size: 1.05rem;
-      color: var(--text-muted);
-    }
-
-    /* Selected Poems Grid */
-    .poems-grid {
+    .section-top-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.75rem;
+      gap: 1.25rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid var(--line-dark);
     }
 
-    @media (min-width: 900px) {
-      .poems-grid {
+    @media (min-width: 960px) {
+      .section-top-grid {
+        grid-template-columns: 0.35fr 0.65fr;
+        align-items: end;
+      }
+    }
+
+    .section-summary {
+      font-size: 1.05rem;
+      color: var(--ink-muted);
+      max-width: 560px;
+      font-weight: 300;
+    }
+
+    /* Selected Poems — Sharp Architectural Columns */
+    .poems-editorial-list {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 960px) {
+      .poems-editorial-list {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    .poem-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      padding: 2.4rem 2rem;
+    .poem-column {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line-dark);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.35s ease;
-      position: relative;
+      transition: background-color 0.3s ease;
     }
 
-    .poem-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 2rem;
-      width: 40px;
-      height: 3px;
-      background: var(--accent-bronze);
-      transition: width 0.35s ease;
+    @media (min-width: 960px) {
+      .poem-column {
+        padding: 3rem 2.25rem;
+        border-right: 1px solid var(--line-dark);
+      }
+      .poem-column:first-child {
+        padding-left: 0;
+      }
+      .poem-column:last-child {
+        border-right: none;
+        padding-right: 0;
+      }
     }
 
-    .poem-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--bg-espresso);
-      box-shadow: 0 20px 45px rgba(30, 22, 17, 0.08);
-    }
-
-    .poem-card:hover::before {
-      width: 80px;
-    }
-
-    .poem-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.16em;
+    .poem-index {
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 0.75rem;
+      color: var(--ink-muted);
+      margin-bottom: 1.25rem;
       display: block;
     }
 
-    .poem-title {
-      font-family: var(--font-serif);
-      font-size: 1.85rem;
-      font-weight: 600;
-      line-height: 1.2;
+    .poem-heading {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 400;
+      line-height: 1.15;
       margin-bottom: 1.1rem;
-      color: var(--text-dark);
     }
 
-    .poem-excerpt {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
+    .poem-quote {
+      font-family: var(--serif);
+      font-size: 1.3rem;
       font-style: italic;
-      color: var(--text-muted);
+      color: var(--ink-muted);
       line-height: 1.55;
-      margin-bottom: 2rem;
+      margin-bottom: 2.25rem;
     }
 
-    .editorial-link {
-      font-size: 0.78rem;
+    .sharp-link {
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--bg-espresso);
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      border-bottom: 1px solid var(--bg-espresso);
-      padding-bottom: 0.25rem;
+      gap: 0.5rem;
+      padding-bottom: 0.3rem;
+      border-bottom: 1px solid var(--ink);
       width: fit-content;
       transition: color 0.25s ease, border-color 0.25s ease;
     }
 
-    .editorial-link:hover {
-      color: var(--accent-bronze);
-      border-color: var(--accent-bronze);
+    .sharp-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
     }
 
     /* =========================================
-       6. THE COLLECTIONS (WARM SAND BAND)
+       6. THE COLLECTIONS (CRISP ARCHIVAL PAPER)
        ========================================= */
-    .collections-band {
-      background-color: var(--bg-cream);
-      border-top: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
+    .collections-surface {
+      background-color: var(--off-white);
+      border-top: 1px solid var(--line-dark);
+      border-bottom: 1px solid var(--line-dark);
     }
 
-    .collection-list {
-      display: flex;
-      flex-direction: column;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .collection-row {
-      padding: 2.25rem 0;
-      border-bottom: 1px solid var(--border-light);
+    .collection-item {
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--line-dark);
       display: grid;
       grid-template-columns: 1fr;
       gap: 1rem;
-      align-items: center;
-      transition: padding-left 0.3s ease, background-color 0.3s ease;
+      align-items: baseline;
     }
 
-    @media (min-width: 900px) {
-      .collection-row {
-        grid-template-columns: 0.8fr 1.6fr 2.2fr auto;
-        gap: 2rem;
-      }
-      .collection-row:hover {
-        padding-left: 1rem;
+    .collection-item:last-child {
+      border-bottom: none;
+    }
+
+    @media (min-width: 960px) {
+      .collection-item {
+        grid-template-columns: 0.7fr 1.5fr 2fr auto;
+        gap: 2.5rem;
+        padding: 3rem 0;
       }
     }
 
-    .collection-num {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
+    .collection-code {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--accent-bronze);
+      color: var(--accent);
       font-weight: 600;
     }
 
-    .collection-name {
-      font-family: var(--font-serif);
-      font-size: 1.9rem;
-      font-weight: 500;
-      color: var(--text-dark);
+    .collection-title {
+      font-family: var(--serif);
+      font-size: 2.1rem;
+      font-weight: 400;
     }
 
-    .collection-premise {
-      color: var(--text-muted);
+    .collection-desc {
       font-size: 0.98rem;
+      color: var(--ink-muted);
+      font-weight: 300;
     }
 
     /* =========================================
-       7. THE POET'S PHILOSOPHY (DEEP ESPRESSO BAND)
+       7. THE POET'S PHILOSOPHY (OBSIDIAN MONOLITH)
        ========================================= */
-    .philosophy-section {
-      background-color: var(--bg-espresso);
-      color: var(--text-light);
+    .philosophy-monolith {
+      background-color: var(--espresso);
+      color: var(--white);
     }
 
-    .philosophy-grid {
+    .philosophy-layout {
       display: grid;
       grid-template-columns: 1fr;
       gap: 3rem;
       align-items: center;
     }
 
-    @media (min-width: 900px) {
-      .philosophy-grid {
-        grid-template-columns: 1fr 1.25fr;
-        gap: 4.5rem;
+    @media (min-width: 960px) {
+      .philosophy-layout {
+        grid-template-columns: 0.85fr 1.15fr;
+        gap: 5rem;
       }
     }
 
-    .philosophy-image {
-      border-radius: 16px;
+    .philosophy-portrait {
+      border: 1px solid var(--line-light);
+      aspect-ratio: 4 / 5;
       overflow: hidden;
-      border: 1px solid var(--border-dark);
-      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
     }
 
-    .philosophy-image img {
+    .philosophy-portrait img {
       width: 100%;
-      height: 460px;
+      height: 100%;
       object-fit: cover;
-      object-position: center;
+      object-position: center top;
     }
 
-    .philosophy-heading {
-      font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
-      line-height: 1.12;
-      margin-bottom: 1.5rem;
-      color: var(--text-light);
-    }
-
-    .philosophy-text {
-      font-size: 1.08rem;
-      color: var(--text-light-muted);
-      margin-bottom: 1.25rem;
+    .philosophy-title {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 4.5vw, 3.8rem);
       font-weight: 300;
+      line-height: 1.08;
+      margin: 1rem 0 1.75rem;
     }
 
-    .philosophy-mantra {
-      margin-top: 2rem;
+    .philosophy-body {
+      font-size: 1.08rem;
+      line-height: 1.8;
+      color: var(--paper-muted);
+      font-weight: 300;
+      margin-bottom: 1.25rem;
+    }
+
+    .philosophy-footer-line {
+      margin-top: 2.25rem;
       padding-top: 1.5rem;
-      border-top: 1px solid var(--border-dark);
-      font-family: var(--font-serif);
-      font-size: 1.45rem;
+      border-top: 1px solid var(--line-light);
+      font-family: var(--serif);
+      font-size: 1.5rem;
       font-style: italic;
-      color: var(--accent-bronze);
+      color: var(--white);
     }
 
     /* =========================================
-       8. AUDIO READINGS (INTERACTIVE FRONTEND)
+       8. AUDIO READINGS & JOURNAL
        ========================================= */
-    .audio-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
+    .audio-row {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--line-dark);
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
     }
 
     @media (min-width: 768px) {
-      .audio-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .audio-row {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2.5rem 0;
       }
     }
 
-    .audio-card {
-      background: #FFFFFF;
-      border: 1px solid var(--border-light);
-      border-radius: 14px;
-      padding: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    .audio-track-title {
+      font-family: var(--serif);
+      font-size: 1.85rem;
+      font-weight: 400;
+      margin-top: 0.25rem;
     }
 
-    .audio-card:hover {
-      border-color: var(--accent-bronze);
-      box-shadow: 0 14px 30px rgba(30, 22, 17, 0.06);
-    }
-
-    .audio-meta {
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-bronze);
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-      display: block;
-    }
-
-    .audio-title {
-      font-family: var(--font-serif);
-      font-size: 1.65rem;
-      font-weight: 600;
-      margin-bottom: 0.35rem;
-    }
-
-    .audio-duration {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-
-    .play-btn {
-      background: var(--bg-espresso);
-      color: var(--text-light);
-      border: none;
-      border-radius: 999px;
-      padding: 0.85rem 1.4rem;
-      font-family: var(--font-sans);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+    .audio-trigger {
+      background: var(--espresso);
+      color: var(--white);
+      border: 1px solid var(--espresso);
+      padding: 0.85rem 1.65rem;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.3s ease, transform 0.2s ease;
+      width: fit-content;
+      transition: all 0.25s ease;
     }
 
-    .play-btn:hover,
-    .play-btn.playing {
-      background: var(--accent-bronze);
-      color: var(--bg-espresso);
-      font-weight: 600;
+    .audio-trigger:hover,
+    .audio-trigger.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--white);
     }
 
-    /* =========================================
-       9. JOURNAL / NOTES
-       ========================================= */
-    .journal-grid {
+    /* Journal 3-Column Sharp Grid */
+    .journal-columns {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
     }
 
-    @media (min-width: 900px) {
-      .journal-grid {
+    @media (min-width: 960px) {
+      .journal-columns {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    .journal-card {
-      border-top: 1px solid var(--bg-espresso);
-      padding-top: 1.5rem;
+    .journal-entry {
+      padding: 2.25rem 0;
+      border-bottom: 1px solid var(--line-dark);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    .journal-title {
-      font-family: var(--font-serif);
-      font-size: 1.7rem;
-      font-weight: 600;
-      line-height: 1.25;
-      margin: 0.6rem 0 0.85rem;
+    @media (min-width: 960px) {
+      .journal-entry {
+        padding: 2.75rem 2.25rem;
+        border-right: 1px solid var(--line-dark);
+      }
+      .journal-entry:first-child { padding-left: 0; }
+      .journal-entry:last-child { border-right: none; padding-right: 0; }
     }
 
-    .journal-summary {
-      color: var(--text-muted);
-      font-size: 0.96rem;
-      margin-bottom: 1.5rem;
+    .journal-heading {
+      font-family: var(--serif);
+      font-size: 1.75rem;
+      font-weight: 400;
+      margin: 0.65rem 0 0.85rem;
+    }
+
+    .journal-excerpt {
+      font-size: 0.95rem;
+      color: var(--ink-muted);
+      font-weight: 300;
+      margin-bottom: 2rem;
     }
 
     /* =========================================
-       10. COLLABORATIONS & NEWSLETTER FOOTER
+       9. COLLABORATIONS & FOOTER
        ========================================= */
-    .collab-box {
-      background: var(--bg-cream);
-      border: 1px solid var(--border-light);
-      border-radius: 20px;
-      padding: 3.5rem 2rem;
+    .enquiry-band {
+      background: var(--off-white);
+      border-top: 1px solid var(--line-dark);
       text-align: center;
-      max-width: 960px;
+    }
+
+    .enquiry-inner {
+      max-width: 740px;
       margin: 0 auto;
     }
 
-    @media (min-width: 768px) {
-      .collab-box {
-        padding: 4.5rem 4rem;
+    .site-footer {
+      background: var(--espresso);
+      color: var(--white);
+      padding: 5rem 1.25rem 2.5rem;
+    }
+
+    @media (min-width: 960px) {
+      .site-footer {
+        padding: 6.5rem 3.5rem 3rem;
       }
     }
 
-    .collab-box h2 {
-      font-family: var(--font-serif);
-      font-size: clamp(2.1rem, 4vw, 3.2rem);
-      margin-bottom: 1rem;
-    }
-
-    .collab-box p {
-      max-width: 620px;
-      margin: 0 auto 2rem;
-      color: var(--text-muted);
-    }
-
-    footer {
-      background-color: var(--bg-espresso);
-      color: var(--text-light);
-      padding: 5rem 1.5rem 2.5rem;
-    }
-
-    .footer-inner {
-      max-width: 1240px;
+    .footer-container {
+      max-width: 1320px;
       margin: 0 auto;
     }
 
-    .letter-grid {
+    .letter-split {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 2.5rem;
       padding-bottom: 4rem;
-      border-bottom: 1px solid var(--border-dark);
-      align-items: center;
+      border-bottom: 1px solid var(--line-light);
     }
 
-    @media (min-width: 900px) {
-      .letter-grid {
-        grid-template-columns: 1.2fr 1fr;
+    @media (min-width: 960px) {
+      .letter-split {
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: end;
       }
     }
 
-    .letter-form {
+    .letter-box {
       display: flex;
       flex-direction: column;
-      gap: 0.85rem;
+      gap: 0.75rem;
     }
 
-    @media (min-width: 540px) {
-      .letter-form {
+    @media (min-width: 560px) {
+      .letter-box {
         flex-direction: row;
       }
     }
 
-    .letter-input {
+    .letter-field {
       flex: 1;
-      background: rgba(250, 247, 242, 0.08);
-      border: 1px solid var(--border-dark);
-      border-radius: 999px;
-      padding: 0.95rem 1.5rem;
-      color: var(--text-light);
-      font-family: var(--font-sans);
-      font-size: 0.95rem;
+      background: transparent;
+      border: 1px solid var(--line-light);
+      padding: 0.95rem 1.2rem;
+      color: var(--white);
+      font-family: var(--sans);
+      font-size: 0.9rem;
       outline: none;
     }
 
-    .letter-input:focus {
-      border-color: var(--accent-bronze);
+    .letter-field:focus {
+      border-color: var(--accent);
     }
 
-    .footer-bottom {
+    .footer-legal {
       padding-top: 2rem;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+      gap: 0.75rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--text-light-muted);
+      color: var(--paper-muted);
     }
 
     @media (min-width: 768px) {
-      .footer-bottom {
+      .footer-legal {
         flex-direction: row;
         justify-content: space-between;
       }
     }
 
-    /* Scroll Fade Animation */
+    /* Subtle Fade Reveal */
     .reveal {
       opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
     }
 
-    .reveal.visible {
+    .reveal.in-view {
       opacity: 1;
       transform: translateY(0);
     }
@@ -962,194 +945,200 @@
 <body>
 
   <!-- =========================================
-       NAVIGATION (5-PAGE ARCHITECTURE)
+       NAVIGATION BAR
        ========================================= -->
-  <header>
-    <a href="index.html" class="brand-pill">ADI POETRY</a>
+  <header class="site-header">
+    <a href="index.html" class="logo">ADI POETRY</a>
 
-    <nav class="nav-pill">
-      <div class="nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="works.html">Works & Collections</a>
-        <a href="audio.html">Audio Readings</a>
-        <a href="journal.html">Journal</a>
-        <a href="about.html">About & Bookings</a>
-      </div>
-      <button class="menu-toggle" id="menuBtn" aria-label="Open Navigation">Menu +</button>
+    <nav class="desktop-nav">
+      <a href="index.html" class="active">01 · Index</a>
+      <a href="works.html">02 · Works</a>
+      <a href="audio.html">03 · Audio</a>
+      <a href="journal.html">04 · Journal</a>
+      <a href="about.html">05 · About & Enquiries</a>
     </nav>
+
+    <button class="menu-trigger" id="openNav">Menu</button>
   </header>
 
-  <!-- Mobile Fullscreen Drawer -->
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="index.html">Home</a>
-    <a href="works.html">Works & Collections</a>
-    <a href="audio.html">Audio Readings</a>
-    <a href="journal.html">Journal</a>
-    <a href="about.html">About & Bookings</a>
-    <button class="btn-outline" id="closeMenuBtn" style="margin-top: 1rem;">Close</button>
+  <!-- Mobile Fullscreen Menu -->
+  <div class="mobile-overlay" id="mobileNav">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span class="logo">ADI POETRY</span>
+      <button class="menu-trigger" id="closeNav">Close ×</button>
+    </div>
+
+    <div class="mobile-overlay-links">
+      <a href="index.html"><span>01</span> Index</a>
+      <a href="works.html"><span>02</span> Works & Collections</a>
+      <a href="audio.html"><span>03</span> Audio Readings</a>
+      <a href="journal.html"><span>04</span> Journal / Notes</a>
+      <a href="about.html"><span>05</span> About & Bookings</a>
+    </div>
+
+    <div style="font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--paper-muted);">
+      Love, Held With Courage
+    </div>
   </div>
 
   <!-- =========================================
-       SECTION 1: CINEMATIC HERO
+       SECTION 1: GEOMETRIC EDITORIAL HERO
        ========================================= -->
   <section class="hero">
-    <!-- Architectural Geometry -->
-    <div class="geo-overlay" aria-hidden="true">
-      <div class="geo-diamond outer"></div>
-      <div class="geo-diamond"></div>
-      <div class="geo-circle"></div>
+    <div class="hero-geometry" aria-hidden="true">
+      <div class="wire-crosshair-v"></div>
+      <div class="wire-diamond"></div>
+      <div class="wire-circle"></div>
     </div>
 
-    <div class="hero-corners-top">
+    <div class="hero-meta-bar">
       <span>A Living Collection</span>
       <span>Poems · Readings · Notes</span>
     </div>
 
-    <div class="hero-center">
-      <!-- Strategic Hero Portrait -->
-      <div class="hero-portrait-wrap">
-        <img src="WhatsApp%20Image%202026-11-12%20at%201.27.31%20PM.jpeg" alt="Adi Poetry Portrait" />
+    <div class="hero-stage">
+      <div class="hero-copy">
+        <span class="hero-label">ADI POETRY · ARCHIVE 2026</span>
+        <h1 class="hero-headline">Love, held<br><em>with courage</em></h1>
+        <p class="hero-lead">
+          Poems on desire, devotion, vulnerability, and the many ways masculinity learns to love. A living collection of poems, readings, and notes.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="works.html" class="btn-sharp-white">Read the Works →</a>
+          <a href="#audio-readings" class="btn-sharp-ghost">▶ Listen to Readings</a>
+        </div>
       </div>
 
-      <span class="hero-kicker">ADI POETRY</span>
-      <h1 class="hero-title">Love, held <em>with courage</em></h1>
-      <p class="hero-subtitle">
-        Poems on desire, devotion, vulnerability, and the many ways masculinity learns to love. A living collection of poems, readings, and notes.
-      </p>
-
-      <div class="hero-actions">
-        <a href="works.html" class="btn-primary">Enter the Reading Room</a>
-        <a href="#audio-readings" class="btn-outline">▶ Listen to the Voice</a>
+      <!-- Switched Hero Portrait -->
+      <div class="hero-visual">
+        <div class="hero-img-frame">
+          <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Adi Poetry — Editorial Portrait" />
+        </div>
+        <div class="hero-img-caption">
+          <span>Plate I · Adi Poetry</span>
+          <span>Tenderness as Practice</span>
+        </div>
       </div>
     </div>
 
-    <div class="hero-corners-bottom">
-      <span>Tenderness as Strength</span>
-      <span>Scroll to Begin ↓</span>
+    <div class="hero-meta-bar">
+      <span>Desire · Devotion · Vulnerability</span>
+      <span>Scroll ↓</span>
     </div>
   </section>
 
   <!-- =========================================
-       SECTION 2: DYNAMIC SIDEWAYS GALLERY (ZERO BACKEND)
+       SECTION 2: SEAMLESS SIDEWAYS GALLERY (SWITCHED IMAGES)
        ========================================= -->
-  <section class="marquee-section" aria-label="Visual & Poetic Gallery">
-    <div class="marquee-header">
+  <section class="gallery-strip">
+    <div class="strip-header">
       <div>
-        <span class="section-eyebrow">Visual & Poetic Fragments</span>
-        <h2 class="section-heading">Light still finds the open hand</h2>
+        <span class="eyebrow">Visual & Poetic Fragments</span>
+        <h2 class="display-title">Light still finds the open hand</h2>
       </div>
-      <p style="color: var(--text-muted); max-width: 380px; font-size: 0.92rem;">
-        Hover over any frame to pause the movement and sit with the words.
+      <p style="font-size: 0.88rem; color: var(--ink-muted); max-width: 340px;">
+        A continuous visual rhythm. Touch or hover any plate to pause and read.
       </p>
     </div>
 
-    <div class="marquee-track-wrapper">
-      <!-- Track Group 1 -->
-      <div class="marquee-group">
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Adi Poetry — Morning Light" />
+    <div class="marquee-track">
+      <!-- Group 1 -->
+      <div class="marquee-set">
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-11-12%20at%201.28.05%20PM.jpeg" alt="Adi Poetry — Fragment I" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">I · On Becoming</span>
-            <p class="visual-card-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 01 · On Hope</span>
+          <p class="art-plate-verse">“Even after winter, the root remembers how to reach for warmth.”</p>
         </article>
 
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Quiet Courage" />
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Fragment II" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">II · On Devotion</span>
-            <p class="visual-card-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 02 · On Devotion</span>
+          <p class="art-plate-verse">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
         </article>
 
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Spacious Masculinity" />
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Fragment III" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">III · On Hope</span>
-            <p class="visual-card-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 03 · On Becoming</span>
+          <p class="art-plate-verse">“Nothing honest you have ever loved is ever truly wasted.”</p>
         </article>
       </div>
 
-      <!-- Track Group 2 (Seamless Loop Clone) -->
-      <div class="marquee-group" aria-hidden="true">
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Adi Poetry — Morning Light" />
+      <!-- Group 2 (Seamless Loop) -->
+      <div class="marquee-set" aria-hidden="true">
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-11-12%20at%201.28.05%20PM.jpeg" alt="Adi Poetry — Fragment I" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">I · On Becoming</span>
-            <p class="visual-card-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 01 · On Hope</span>
+          <p class="art-plate-verse">“Even after winter, the root remembers how to reach for warmth.”</p>
         </article>
 
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Quiet Courage" />
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Adi Poetry — Fragment II" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">II · On Devotion</span>
-            <p class="visual-card-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 02 · On Devotion</span>
+          <p class="art-plate-verse">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
         </article>
 
-        <article class="visual-card">
-          <div class="visual-card-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Spacious Masculinity" />
+        <article class="art-plate">
+          <div class="art-plate-img">
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Adi Poetry — Fragment III" />
           </div>
-          <div class="visual-card-body">
-            <span class="visual-card-tag">III · On Hope</span>
-            <p class="visual-card-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
-          </div>
+          <span class="art-plate-num">Fragment 03 · On Becoming</span>
+          <p class="art-plate-verse">“Nothing honest you have ever loved is ever truly wasted.”</p>
         </article>
       </div>
     </div>
   </section>
 
   <!-- =========================================
-       SECTION 3: SELECTED POEMS
+       SECTION 3: SELECTED POEMS (SWISS COLUMNS)
        ========================================= -->
-  <section class="container reveal">
-    <div class="section-intro">
-      <span class="section-eyebrow">Selected Poems</span>
-      <h2 class="section-heading">Poems for the tender and the brave</h2>
-      <p class="section-desc">
+  <section class="section-wrap reveal">
+    <div class="section-top-grid">
+      <div>
+        <span class="eyebrow">Selected Poems</span>
+        <h2 class="display-title">Poems for the tender and the brave</h2>
+      </div>
+      <p class="section-summary">
         Intimate, sensual, and emotionally assured, these poems make room for the feeling we are often taught to hide.
       </p>
     </div>
 
-    <div class="poems-grid">
-      <article class="poem-card">
+    <div class="poems-editorial-list">
+      <article class="poem-column">
         <div>
-          <span class="poem-label">Featured Poem · 01</span>
-          <h3 class="poem-title">Featured poem title</h3>
-          <p class="poem-excerpt">“Short excerpt from the poem goes here.”</p>
+          <span class="poem-index">Featured Poem · 01</span>
+          <h3 class="poem-heading">Featured poem title</h3>
+          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
         </div>
-        <a href="works.html" class="editorial-link">Read in full →</a>
+        <a href="works.html" class="sharp-link">Read in full →</a>
       </article>
 
-      <article class="poem-card">
+      <article class="poem-column">
         <div>
-          <span class="poem-label">Featured Poem · 02</span>
-          <h3 class="poem-title">Featured poem title</h3>
-          <p class="poem-excerpt">“Short excerpt from the poem goes here.”</p>
+          <span class="poem-index">Featured Poem · 02</span>
+          <h3 class="poem-heading">Featured poem title</h3>
+          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
         </div>
-        <a href="works.html" class="editorial-link">Read in full →</a>
+        <a href="works.html" class="sharp-link">Read in full →</a>
       </article>
 
-      <article class="poem-card">
+      <article class="poem-column">
         <div>
-          <span class="poem-label">Featured Poem · 03</span>
-          <h3 class="poem-title">Featured poem title</h3>
-          <p class="poem-excerpt">“Short excerpt from the poem goes here.”</p>
+          <span class="poem-index">Featured Poem · 03</span>
+          <h3 class="poem-heading">Featured poem title</h3>
+          <p class="poem-quote">“Short excerpt from the poem goes here.”</p>
         </div>
-        <a href="works.html" class="editorial-link">Read in full →</a>
+        <a href="works.html" class="sharp-link">Read in full →</a>
       </article>
     </div>
   </section>
@@ -1157,61 +1146,63 @@
   <!-- =========================================
        SECTION 4: THE COLLECTIONS
        ========================================= -->
-  <section class="collections-band reveal">
-    <div class="container">
-      <div class="section-intro">
-        <span class="section-eyebrow">The Collections</span>
-        <h2 class="section-heading">The collection moves from longing to devotion</h2>
-        <p class="section-desc">
+  <section class="collections-surface reveal">
+    <div class="section-wrap">
+      <div class="section-top-grid">
+        <div>
+          <span class="eyebrow">The Collections</span>
+          <h2 class="display-title">The collection moves from longing to devotion</h2>
+        </div>
+        <p class="section-summary">
           Three bodies of work trace the changing temperature of love: its first ache, its difficult clarity, and the steadiness that follows.
         </p>
       </div>
 
-      <div class="collection-list">
-        <div class="collection-row">
-          <span class="collection-num">Collection Title One</span>
-          <h3 class="collection-name">Collection title one</h3>
-          <p class="collection-premise">A one-line emotional premise about longing, distance, and the desire to be met.</p>
-          <a href="works.html" class="editorial-link">Read more →</a>
+      <div>
+        <div class="collection-item">
+          <span class="collection-code">Collection Title One</span>
+          <h3 class="collection-title">Collection title one</h3>
+          <p class="collection-desc">A one-line emotional premise about longing, distance, and the desire to be met.</p>
+          <a href="works.html" class="sharp-link">Read more →</a>
         </div>
 
-        <div class="collection-row">
-          <span class="collection-num">Collection Title Two</span>
-          <h3 class="collection-name">Collection title two</h3>
-          <p class="collection-premise">A one-line emotional premise about identity, risk, and the courage to stay present.</p>
-          <a href="works.html" class="editorial-link">Read more →</a>
+        <div class="collection-item">
+          <span class="collection-code">Collection Title Two</span>
+          <h3 class="collection-title">Collection title two</h3>
+          <p class="collection-desc">A one-line emotional premise about identity, risk, and the courage to stay present.</p>
+          <a href="works.html" class="sharp-link">Read more →</a>
         </div>
 
-        <div class="collection-row">
-          <span class="collection-num">Collection Title Three</span>
-          <h3 class="collection-name">Collection title three</h3>
-          <p class="collection-premise">A one-line emotional premise about devotion, tenderness, and becoming together.</p>
-          <a href="works.html" class="editorial-link">Read more →</a>
+        <div class="collection-item">
+          <span class="collection-code">Collection Title Three</span>
+          <h3 class="collection-title">Collection title three</h3>
+          <p class="collection-desc">A one-line emotional premise about devotion, tenderness, and becoming together.</p>
+          <a href="works.html" class="sharp-link">Read more →</a>
         </div>
       </div>
     </div>
   </section>
 
   <!-- =========================================
-       SECTION 5: THE POET'S PHILOSOPHY
+       SECTION 5: THE POET'S PHILOSOPHY (SWITCHED IMAGE)
        ========================================= -->
-  <section class="philosophy-section reveal">
-    <div class="container">
-      <div class="philosophy-grid">
-        <div class="philosophy-image">
-          <img src="WhatsApp%20Image%202026-11-12%20at%201.28.05%20PM.jpeg" alt="Adi Poetry — Philosophy Portrait" />
+  <section class="philosophy-monolith reveal">
+    <div class="section-wrap">
+      <div class="philosophy-layout">
+        <div class="philosophy-portrait">
+          <img src="WhatsApp%20Image%202026-11-12%20at%201.27.31%20PM.jpeg" alt="Adi Poetry — The Poet's Philosophy" />
         </div>
 
         <div>
-          <span class="section-eyebrow">The Poet's Philosophy</span>
-          <h2 class="philosophy-heading">A masculinity spacious enough for tenderness</h2>
-          <p class="philosophy-text">
+          <span class="eyebrow">The Poet's Philosophy</span>
+          <h2 class="philosophy-title">A masculinity spacious enough for tenderness</h2>
+          <p class="philosophy-body">
             Adi Poetry writes toward a masculinity that can hold contradiction: desire without possession, strength without hardness, and vulnerability as a practice rather than a confession.
           </p>
-          <p class="philosophy-text">
+          <p class="philosophy-body">
             Here, love is not an escape from the self. It is one of the ways the self becomes more honest.
           </p>
-          <div class="philosophy-mantra">
+          <div class="philosophy-footer-line">
             Love as strength. Vulnerability as practice. Masculinity lived with nuance.
           </div>
         </div>
@@ -1222,36 +1213,34 @@
   <!-- =========================================
        SECTION 6: AUDIO READINGS (ZERO BACKEND)
        ========================================= -->
-  <section class="container reveal" id="audio-readings">
-    <div class="section-intro">
-      <span class="section-eyebrow">Audio Readings</span>
-      <h2 class="section-heading">Hear the poems in the voice that made them</h2>
-      <p class="section-desc">
+  <section class="section-wrap reveal" id="audio-readings">
+    <div class="section-top-grid">
+      <div>
+        <span class="eyebrow">Audio Readings</span>
+        <h2 class="display-title">Hear the poems in the voice that made them</h2>
+      </div>
+      <p class="section-summary">
         Let the pace loosen. Let the voice carry what the page leaves open.
       </p>
     </div>
 
-    <div class="audio-grid">
-      <div class="audio-card">
+    <div>
+      <div class="audio-row">
         <div>
-          <span class="audio-meta">Audio Reading Title One</span>
-          <h3 class="audio-title">Audio reading title one</h3>
-          <span class="audio-duration">03:24 · Spoken Word</span>
+          <span class="eyebrow">Audio Reading Title One · [03:24]</span>
+          <h3 class="audio-track-title">Audio reading title one</h3>
         </div>
-        <button class="play-btn" data-audio="audio-1">▶ Play slowly</button>
-        <!-- Replace src with your .mp3 file path in GitHub when ready -->
-        <audio id="audio-1" src="audio-reading-1.mp3" preload="none"></audio>
+        <button class="audio-trigger" data-audio="track-1">▶ Play slowly</button>
+        <audio id="track-1" src="audio-reading-1.mp3" preload="none"></audio>
       </div>
 
-      <div class="audio-card">
+      <div class="audio-row">
         <div>
-          <span class="audio-meta">Audio Reading Title Two</span>
-          <h3 class="audio-title">Audio reading title two</h3>
-          <span class="audio-duration">04:10 · Spoken Word</span>
+          <span class="eyebrow">Audio Reading Title Two · [04:10]</span>
+          <h3 class="audio-track-title">Audio reading title two</h3>
         </div>
-        <button class="play-btn" data-audio="audio-2">▶ Play slowly</button>
-        <!-- Replace src with your .mp3 file path in GitHub when ready -->
-        <audio id="audio-2" src="audio-reading-2.mp3" preload="none"></audio>
+        <button class="audio-trigger" data-audio="track-2">▶ Play slowly</button>
+        <audio id="track-2" src="audio-reading-2.mp3" preload="none"></audio>
       </div>
     </div>
   </section>
@@ -1259,47 +1248,49 @@
   <!-- =========================================
        SECTION 7: JOURNAL / NOTES
        ========================================= -->
-  <section class="container reveal" style="padding-top: 1rem;">
-    <div class="section-intro">
-      <span class="section-eyebrow">Journal / Notes</span>
-      <h2 class="section-heading">Notes on love, identity, and becoming</h2>
-      <p class="section-desc">
+  <section class="section-wrap reveal" style="padding-top: 0;">
+    <div class="section-top-grid">
+      <div>
+        <span class="eyebrow">Journal / Notes</span>
+        <h2 class="display-title">Notes on love, identity, and becoming</h2>
+      </div>
+      <p class="section-summary">
         Short essays and journal entries for the places where intimacy meets the work of changing.
       </p>
     </div>
 
-    <div class="journal-grid">
-      <article class="journal-card">
+    <div class="journal-columns">
+      <article class="journal-entry">
         <div>
-          <span class="section-eyebrow">Essay / Journal</span>
-          <h3 class="journal-title">Article Title</h3>
-          <p class="journal-summary">
+          <span class="eyebrow">Essay / Journal</span>
+          <h3 class="journal-heading">Article Title</h3>
+          <p class="journal-excerpt">
             Short summary about intimacy, the risks of being known, and what desire asks us to notice.
           </p>
         </div>
-        <a href="journal.html" class="editorial-link">Read article →</a>
+        <a href="journal.html" class="sharp-link">Read article →</a>
       </article>
 
-      <article class="journal-card">
+      <article class="journal-entry">
         <div>
-          <span class="section-eyebrow">Essay / Journal</span>
-          <h3 class="journal-title">Article Title</h3>
-          <p class="journal-summary">
+          <span class="eyebrow">Essay / Journal</span>
+          <h3 class="journal-heading">Article Title</h3>
+          <p class="journal-excerpt">
             Short summary about masculinity, emotional inheritance, and the permission to soften.
           </p>
         </div>
-        <a href="journal.html" class="editorial-link">Read article →</a>
+        <a href="journal.html" class="sharp-link">Read article →</a>
       </article>
 
-      <article class="journal-card">
+      <article class="journal-entry">
         <div>
-          <span class="section-eyebrow">Essay / Journal</span>
-          <h3 class="journal-title">Article Title</h3>
-          <p class="journal-summary">
+          <span class="eyebrow">Essay / Journal</span>
+          <h3 class="journal-heading">Article Title</h3>
+          <p class="journal-excerpt">
             Short summary about becoming, the beloved self, and the life built after certainty.
           </p>
         </div>
-        <a href="journal.html" class="editorial-link">Read article →</a>
+        <a href="journal.html" class="sharp-link">Read article →</a>
       </article>
     </div>
   </section>
@@ -1307,18 +1298,20 @@
   <!-- =========================================
        SECTION 8: READINGS · CONVERSATIONS · COLLABORATIONS
        ========================================= -->
-  <section class="container reveal" style="padding-top: 1rem;">
-    <div class="collab-box">
-      <span class="section-eyebrow">Readings · Conversations · Collaborations</span>
-      <h2>Bring the work into the room</h2>
-      <p>
-        For readers, curators, festivals, and collaborators: enquire about readings, conversations, commissions, and creative partnerships. Invite the poems into a setting with its own charge, and let the exchange shape what comes next.
-      </p>
-      <a href="about.html" class="btn-primary" style="background: var(--bg-espresso); color: var(--text-light);">
-        Enquire Now →
-      </a>
-      <div style="margin-top: 1.5rem; font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted);">
-        Readings, conversations, commissions, and creative partnerships.
+  <section class="enquiry-band reveal">
+    <div class="section-wrap">
+      <div class="enquiry-inner">
+        <span class="eyebrow" style="margin-bottom: 1rem;">Readings · Conversations · Collaborations</span>
+        <h2 class="display-title" style="margin-bottom: 1.25rem;">Bring the work into the room</h2>
+        <p class="section-summary" style="margin: 0 auto 2.25rem;">
+          For readers, curators, festivals, and collaborators: enquire about readings, conversations, commissions, and creative partnerships. Invite the poems into a setting with its own charge, and let the exchange shape what comes next.
+        </p>
+        <a href="about.html" class="btn-sharp-white" style="background: var(--espresso); color: var(--white); border-color: var(--espresso);">
+          Enquire Now →
+        </a>
+        <div style="margin-top: 1.5rem; font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);">
+          Readings, conversations, commissions, and creative partnerships.
+        </div>
       </div>
     </div>
   </section>
@@ -1326,26 +1319,24 @@
   <!-- =========================================
        SECTION 9: THE LETTER & FOOTER
        ========================================= -->
-  <footer>
-    <div class="footer-inner">
-      <div class="letter-grid">
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="letter-split">
         <div>
-          <span class="section-eyebrow">The Letter</span>
-          <h2 class="section-heading" style="color: var(--text-light); margin-bottom: 0.75rem;">
-            Stay close to the work
-          </h2>
-          <p style="color: var(--text-light-muted); max-width: 480px;">
+          <span class="eyebrow" style="margin-bottom: 0.75rem;">The Letter</span>
+          <h2 class="display-title" style="margin-bottom: 0.75rem;">Stay close to the work</h2>
+          <p style="color: var(--paper-muted); font-weight: 300; max-width: 460px;">
             New poems, audio readings, journal notes, and selected appearances, sent with care.
           </p>
         </div>
 
-        <form class="letter-form" onsubmit="event.preventDefault(); alert('Thank you for joining The Letter. Welcome to Adi Poetry.'); this.reset();">
-          <input type="email" class="letter-input" placeholder="Enter your email address..." required />
-          <button type="submit" class="btn-primary">Join The Letter</button>
+        <form class="letter-box" onsubmit="event.preventDefault(); alert('Welcome to The Letter by Adi Poetry.'); this.reset();">
+          <input type="email" class="letter-field" placeholder="Your email address" required />
+          <button type="submit" class="btn-sharp-white">Subscribe</button>
         </form>
       </div>
 
-      <div class="footer-bottom">
+      <div class="footer-legal">
         <span>© 2026 ADI POETRY · All Rights Reserved</span>
         <span>Love, Held With Courage</span>
       </div>
@@ -1353,57 +1344,51 @@
   </footer>
 
   <!-- =========================================
-       FRONTEND INTERACTIVITY (ZERO DEPENDENCIES)
+       FRONTEND SCRIPTS
        ========================================= -->
   <script>
-    // 1. Mobile Navigation Drawer
-    const menuBtn = document.getElementById('menuBtn');
-    const closeMenuBtn = document.getElementById('closeMenuBtn');
-    const mobileMenu = document.getElementById('mobileMenu');
+    // Mobile Menu Toggle
+    const openNav = document.getElementById('openNav');
+    const closeNav = document.getElementById('closeNav');
+    const mobileNav = document.getElementById('mobileNav');
 
-    menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-    closeMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
+    openNav.addEventListener('click', () => mobileNav.classList.add('open'));
+    closeNav.addEventListener('click', () => mobileNav.classList.remove('open'));
 
-    // 2. Scroll Reveal Observer
+    // Smooth Scroll Reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('in-view');
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.1 });
 
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    // 3. Frontend Audio Reading Controls
-    const playButtons = document.querySelectorAll('.play-btn');
-    playButtons.forEach((btn) => {
+    // Frontend Audio Player
+    const triggers = document.querySelectorAll('.audio-trigger');
+    triggers.forEach((btn) => {
       btn.addEventListener('click', () => {
-        const audioId = btn.getAttribute('data-audio');
-        const audioEl = document.getElementById(audioId);
+        const audio = document.getElementById(btn.getAttribute('data-audio'));
 
-        // Pause any other playing audio
-        document.querySelectorAll('audio').forEach((otherAudio) => {
-          if (otherAudio !== audioEl) {
-            otherAudio.pause();
-          }
+        document.querySelectorAll('audio').forEach((a) => {
+          if (a !== audio) a.pause();
         });
-        playButtons.forEach((otherBtn) => {
-          if (otherBtn !== btn) {
-            otherBtn.classList.remove('playing');
-            otherBtn.textContent = '▶ Play slowly';
+        triggers.forEach((b) => {
+          if (b !== btn) {
+            b.classList.remove('active');
+            b.textContent = '▶ Play slowly';
           }
         });
 
-        if (audioEl.paused) {
-          audioEl.play().catch(() => {
-            alert('Upload your .mp3 file named "' + audioEl.getAttribute('src') + '" to GitHub to play this track.');
+        if (audio.paused) {
+          audio.play().catch(() => {
+            alert('Upload "' + audio.getAttribute('src') + '" to your GitHub folder to play this recording.');
           });
-          btn.classList.add('playing');
+          btn.classList.add('active');
           btn.textContent = '❚❚ Pause';
         } else {
-          audioEl.pause();
-          btn.classList.remove('playing');
+          audio.pause();
+          btn.classList.remove('active');
           btn.textContent = '▶ Play slowly';
         }
       });
