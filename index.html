@@ -12,18 +12,17 @@
 
   <style>
     /* =========================================
-       1. BENTO-GRID DESIGN TOKENS (OBSIDIAN & FROSTED GLASS)
+       EXACT REFERENCE LAYOUT TOKENS (BLACK & WHITE BENTO)
        ========================================= */
     :root {
-      --bg-deep: #0A0706;             /* Ultra-Dark Obsidian Base */
-      --card-bg: #14100D;             /* Deep Frosted Glass Card */
-      --card-hover: #1D1713;          /* Slightly Lighter Card on Hover */
+      --bg-canvas: #070707;
+      --card-bg: #121212;
+      --card-hover: #1A1A1A;
       --border-glass: rgba(255, 255, 255, 0.08);
-      --border-glow: rgba(182, 123, 88, 0.3);
-      --text-main: #FAF7F2;           /* Crisp Ivory White */
-      --text-muted: #9E9187;          /* Warm Stone Gray */
-      --accent-bronze: #B67B48;       /* Burnished Gold-Bronze */
-      
+      --text-main: #FFFFFF;
+      --text-muted: #888888;
+      --accent: #B67B48;
+
       --serif: 'Cormorant Garamond', Georgia, serif;
       --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -35,10 +34,10 @@
     }
 
     body {
-      background-color: var(--bg-deep);
+      background-color: var(--bg-canvas);
       color: var(--text-main);
       font-family: var(--sans);
-      line-height: 1.6;
+      line-height: 1.5;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -54,263 +53,167 @@
     }
 
     /* =========================================
-       2. TOP NAVIGATION BAR
+       TOP HEADER (MATCHING REFERENCE BAR)
        ========================================= */
-    .site-header {
-      position: fixed;
+    .top-bar {
+      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      z-index: 1000;
+      padding: 1.5rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.15rem 1.5rem;
-      background: rgba(10, 7, 6, 0.82);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-glass);
-    }
-
-    .logo {
+      z-index: 10;
       font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-    }
-
-    .desktop-nav {
-      display: none;
-      gap: 2rem;
-      font-size: 0.72rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
+      letter-spacing: 0.05em;
       color: var(--text-muted);
     }
 
-    .desktop-nav a:hover,
-    .desktop-nav a.active {
+    .top-bar .name-brand {
       color: var(--text-main);
-    }
-
-    .menu-trigger {
-      background: none;
-      border: 1px solid var(--border-glass);
-      color: var(--text-main);
-      padding: 0.45rem 1rem;
-      font-family: var(--sans);
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    @media (min-width: 900px) {
-      .site-header { padding: 1.25rem 3.5rem; }
-      .desktop-nav { display: flex; }
-      .menu-trigger { display: none; }
-    }
-
-    /* Mobile Overlay Menu */
-    .mobile-overlay {
-      position: fixed;
-      inset: 0;
-      background: var(--bg-deep);
-      z-index: 1200;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 1.5rem 1.5rem 3rem;
-      transform: translateY(-100%);
-      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .mobile-overlay.open { transform: translateY(0); }
-
-    .mobile-links {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin: auto 0;
-    }
-
-    .mobile-links a {
-      font-family: var(--serif);
-      font-size: 2.4rem;
-      font-weight: 300;
-      border-bottom: 1px solid var(--border-glass);
-      padding-bottom: 0.5rem;
+      font-weight: 500;
     }
 
     /* =========================================
-       3. BENTO-GRID HERO SECTION
+       EXACT BENTO HERO CONTAINER & OVERLAPPING TITLE
        ========================================= */
-    .hero-section {
+    .hero-container {
+      position: relative;
       min-height: 100vh;
-      padding: 6.5rem 1.25rem 3rem;
-      max-width: 1320px;
-      margin: 0 auto;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      align-items: center;
+      padding: 6rem 1.5rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
-    @media (min-width: 900px) {
-      .hero-section { padding: 7.5rem 3.5rem 3rem; }
+    /* Massive Layered Background Name (Exact Reference Style) */
+    .layered-title {
+      position: absolute;
+      top: 38%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif);
+      font-size: clamp(4rem, 12vw, 11rem);
+      font-weight: 300;
+      font-style: italic;
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.92);
+      white-space: nowrap;
+      pointer-events: none;
+      z-index: 1;
+      text-align: center;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.8));
     }
 
-    /* Bento Grid Container */
-    .bento-grid {
+    /* The Bento Grid Frame (Exact Proportion Match) */
+    .bento-shell {
+      position: relative;
+      z-index: 2;
+      width: 100%;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
-    @media (min-width: 900px) {
-      .bento-grid {
-        grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: auto auto;
+    @media (min-width: 860px) {
+      .bento-shell {
+        grid-template-columns: 280px 1fr 240px;
+        grid-template-rows: 240px 240px;
       }
     }
 
-    .bento-card {
+    .b-card {
       background: var(--card-bg);
       border: 1px solid var(--border-glass);
       border-radius: 20px;
-      padding: 2.25rem;
+      padding: 1.75rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.3s ease, transform 0.3s ease, background 0.3s ease;
       position: relative;
       overflow: hidden;
+      backdrop-filter: blur(12px);
+      transition: background 0.3s ease, border-color 0.3s ease;
     }
 
-    .bento-card:hover {
-      border-color: var(--border-glow);
+    .b-card:hover {
       background: var(--card-hover);
-      transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.18);
     }
 
-    /* Card Spans */
-    .span-2 {
-      grid-column: span 1;
-    }
-    @media (min-width: 900px) {
-      .span-2 { grid-column: span 2; }
+    .card-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-main);
     }
 
-    /* Card 1: Main Title & Intro */
-    .bento-intro h1 {
-      font-family: var(--serif);
-      font-size: clamp(2.6rem, 5.5vw, 4.8rem);
-      font-weight: 300;
-      line-height: 1.05;
-      margin: 0.75rem 0 1.25rem;
-    }
-
-    .bento-intro h1 em {
-      font-style: italic;
-      color: var(--accent-bronze);
-    }
-
-    .bento-intro p {
+    .card-arrow {
+      font-size: 0.9rem;
       color: var(--text-muted);
-      font-size: 1.02rem;
-      font-weight: 300;
-      max-width: 520px;
-      margin-bottom: 2rem;
+      align-self: flex-end;
     }
 
-    /* Card 2: Portrait Frame */
-    .bento-portrait {
-      padding: 0;
+    /* Specific Grid Slot Placements matching reference */
+    .card-about {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .card-portfolio {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+    @media (min-width: 860px) {
+      .card-portfolio { grid-column: span 2; }
+    }
+
+    .card-contact {
+      grid-column: span 1;
+      grid-row: span 1;
+    }
+
+    .card-portrait {
+      padding: 0 !important;
       aspect-ratio: 1 / 1;
     }
-
-    .bento-portrait img {
+    .card-portrait img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center top;
-      filter: contrast(1.05);
+      filter: contrast(1.08) grayscale(15%);
     }
 
-    /* Card 3: Selected Poems Snippet */
-    .bento-poems h3 {
-      font-family: var(--serif);
-      font-size: 1.8rem;
-      font-weight: 400;
-      margin: 0.5rem 0 0.75rem;
-    }
-
-    .bento-poems blockquote {
-      font-family: var(--serif);
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-    }
-
-    /* Card 4: Audio Teaser Box */
-    .bento-audio {
-      background: linear-gradient(135deg, rgba(182, 123, 88, 0.12), var(--card-bg));
-    }
-
-    .audio-play-trigger {
-      background: var(--text-main);
-      color: var(--bg-deep);
-      border: none;
-      border-radius: 999px;
-      padding: 0.85rem 1.6rem;
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: background 0.3s ease;
-      width: fit-content;
-      margin-top: 1.5rem;
-    }
-
-    .audio-play-trigger:hover {
-      background: var(--accent-bronze);
-      color: var(--text-main);
-    }
-
-    /* Card 5: Quick Links / Collections */
-    .bento-links {
+    .card-icons {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
     }
 
-    .bento-link-row {
+    .icon-box {
+      width: 38px;
+      height: 38px;
+      background: #1A1A1A;
+      border: 1px solid var(--border-glass);
+      border-radius: 10px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding-bottom: 0.85rem;
-      border-bottom: 1px solid var(--border-glass);
+      justify-content: center;
       font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
     }
 
-    .bento-link-row:hover { color: var(--accent-bronze); }
-
-    .card-eyebrow {
-      font-size: 0.68rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent-bronze);
-      font-weight: 600;
+    .card-resume {
+      grid-column: span 1;
     }
 
     /* =========================================
-       4. SEAMLESS SIDEWAYS MARQUEE (BELOW BENTO)
+       SIDEWAYS SCROLLING MARQUEE (BELOW BENTO)
        ========================================= */
     .marquee-section {
       background: var(--card-bg);
@@ -318,31 +221,22 @@
       border-bottom: 1px solid var(--border-glass);
       padding: 4.5rem 0;
       overflow: hidden;
-      margin-top: 4rem;
+      margin-top: 3rem;
     }
 
     .marquee-header {
-      max-width: 1320px;
+      max-width: 1200px;
       margin: 0 auto 2.5rem;
       padding: 0 1.5rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    @media (min-width: 900px) {
-      .marquee-header {
-        padding: 0 3.5rem;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: flex-end;
-      }
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
     .marquee-track-wrap {
       display: flex;
       width: max-content;
-      animation: scrollSideways 40s linear infinite;
+      animation: scrollSideways 38s linear infinite;
     }
 
     .marquee-track-wrap:hover { animation-play-state: paused; }
@@ -354,354 +248,201 @@
 
     .marquee-set {
       display: flex;
-      gap: 2rem;
-      padding-right: 2rem;
+      gap: 1.5rem;
+      padding-right: 1.5rem;
     }
 
     .gallery-plate {
-      width: 280px;
-      background: var(--bg-deep);
+      width: 300px;
+      background: var(--bg-canvas);
       border: 1px solid var(--border-glass);
       border-radius: 16px;
       overflow: hidden;
       flex-shrink: 0;
-      transition: transform 0.3s ease;
     }
-
-    @media (min-width: 768px) {
-      .gallery-plate { width: 340px; }
-    }
-
-    .gallery-plate:hover { transform: translateY(-5px); }
 
     .gallery-plate-img {
-      height: 320px;
+      height: 280px;
       width: 100%;
-      overflow: hidden;
     }
 
     .gallery-plate-img img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
     }
 
-    .gallery-plate:hover .gallery-plate-img img { transform: scale(1.05); }
-
-    .gallery-plate-body { padding: 1.5rem; }
+    .gallery-plate-body { padding: 1.25rem; }
 
     .plate-quote {
       font-family: var(--serif);
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-style: italic;
       color: var(--text-main);
-      margin-top: 0.5rem;
+      margin-top: 0.35rem;
     }
 
     /* =========================================
-       5. FOOTER & NEWSLETTER
+       FOOTER
        ========================================= */
     footer {
-      background: var(--bg-deep);
-      padding: 5rem 1.5rem 2.5rem;
-      max-width: 1320px;
+      max-width: 1200px;
       margin: 0 auto;
-    }
-
-    @media (min-width: 900px) { footer { padding: 6.5rem 3.5rem 3rem; } }
-
-    .footer-box {
-      background: var(--card-bg);
-      border: 1px solid var(--border-glass);
-      border-radius: 20px;
-      padding: 3.5rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      align-items: center;
-    }
-
-    @media (min-width: 900px) {
-      .footer-box {
-        grid-template-columns: 1.2fr 1fr;
-        padding: 4.5rem;
-      }
-    }
-
-    .newsletter-form {
+      padding: 4rem 1.5rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.85rem;
-    }
-
-    @media (min-width: 540px) {
-      .newsletter-form { flex-direction: row; }
-    }
-
-    .newsletter-input {
-      flex: 1;
-      background: var(--bg-deep);
-      border: 1px solid var(--border-glass);
-      border-radius: 999px;
-      padding: 0.95rem 1.5rem;
-      color: var(--text-main);
-      font-family: var(--sans);
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .newsletter-input:focus { border-color: var(--accent-bronze); }
-
-    .btn-submit {
-      background: var(--text-main);
-      color: var(--bg-deep);
-      border: none;
-      border-radius: 999px;
-      padding: 0.95rem 2rem;
-      font-weight: 600;
+      justify-content: space-between;
+      align-items: center;
       font-size: 0.75rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
     }
-
-    .btn-submit:hover { background: var(--accent-bronze); color: var(--text-main); }
   </style>
 </head>
 <body>
 
-  <!-- =========================================
-       NAVIGATION BAR
-       ========================================= -->
-  <header class="site-header">
-    <a href="index.html" class="logo">ADI POETRY</a>
-    <nav class="desktop-nav">
-      <a href="index.html" class="active">Index</a>
-      <a href="works.html">Works & Collections</a>
-      <a href="audio.html">Audio Readings</a>
-      <a href="journal.html">Journal</a>
-      <a href="about.html">About & Bookings</a>
-    </nav>
-    <button class="menu-trigger" id="openMenu">Menu</button>
+  <!-- Top Reference Header Bar -->
+  <header class="top-bar">
+    <span class="name-brand">Adi Poetry</span>
+    <span>Spoken Word & Literature</span>
+    <span>Nigeria • Live</span>
   </header>
 
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-overlay" id="mobileNav">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-      <span class="logo">ADI POETRY</span>
-      <button class="menu-trigger" id="closeMenu">Close ×</button>
-    </div>
-    <div class="mobile-links">
-      <a href="index.html">01. Index</a>
-      <a href="works.html">02. Works</a>
-      <a href="audio.html">03. Audio</a>
-      <a href="journal.html">04. Journal</a>
-      <a href="about.html">05. About</a>
-    </div>
-    <div style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;">
-      Love, Held With Courage
-    </div>
-  </div>
-
   <!-- =========================================
-       BENTO-GRID HERO SECTION
+       EXACT BENTO HERO SECTION WITH OVERLAPPING TITLE
        ========================================= -->
-  <main class="hero-section">
-    <div class="bento-grid">
-      
-      <!-- Card 1: Main Title (Spans 2 Columns) -->
-      <div class="bento-card span-2 bento-intro">
-        <div>
-          <span class="card-eyebrow">Adi Poetry · Archive 2026</span>
-          <h1>Love, held <em>with courage</em></h1>
-          <p>
-            Poems on desire, devotion, vulnerability, and the many ways masculinity learns to love. A living collection of words and voice.
-          </p>
-        </div>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.5rem;">
-          <a href="works.html" class="audio-play-trigger" style="background: var(--text-main); color: var(--bg-deep);">Enter Reading Room →</a>
-          <a href="#audio-section" class="audio-play-trigger" style="background: transparent; border: 1px solid var(--border-glass); color: var(--text-main);">▶ Listen to Voice</a>
-        </div>
-      </div>
+  <main class="hero-container">
+    
+    <!-- Layered Background Title Overlapping Cards -->
+    <h1 class="layered-title">Adi Poetry</h1>
 
-      <!-- Card 2: Portrait Photo -->
-      <div class="bento-card bento-portrait">
+    <!-- Bento Grid Shell -->
+    <div class="bento-shell">
+      
+      <!-- Card 1: About -->
+      <a href="about.html" class="b-card card-about">
+        <span class="card-label">About the Poet</span>
+        <span class="card-arrow">↗</span>
+      </a>
+
+      <!-- Card 2: Portfolio / Works -->
+      <a href="works.html" class="b-card card-portfolio">
+        <span class="card-label">Works & Collections</span>
+        <span class="card-arrow">↗</span>
+      </a>
+
+      <!-- Card 3: Contact -->
+      <a href="about.html" class="b-card card-contact">
+        <span class="card-label">Enquiries & Bookings</span>
+        <span class="card-arrow">↗</span>
+      </a>
+
+      <!-- Card 4: Portrait Photo (Center Bottom) -->
+      <div class="b-card card-portrait">
         <img src="WhatsApp%20Image%202026-11-12%20at%201.27.31%20PM.jpeg" alt="Adi Poetry Portrait" />
       </div>
 
-      <!-- Card 3: Selected Poem Teaser -->
-      <div class="bento-card bento-poems">
-        <div>
-          <span class="card-eyebrow">Featured Excerpt</span>
-          <h3>Where the Distance Ends</h3>
-          <blockquote>“There is a geography to waiting— measured not in miles or hours, but in the quiet space...”</blockquote>
+      <!-- Card 5: Icon Badge / Audio Bar -->
+      <div class="b-card">
+        <div class="card-icons">
+          <div class="icon-box">✒️</div>
+          <div class="icon-box">🎙️</div>
+          <div class="icon-box">📜</div>
         </div>
-        <a href="works.html" style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent-bronze); font-weight: 600;">Read in full →</a>
+        <span style="font-size: 0.7rem; color: var(--text-muted); text-align: center; margin-top: 0.5rem;">Voice & Verse</span>
       </div>
 
-      <!-- Card 4: Audio Feature Teaser -->
-      <div class="bento-card bento-audio" id="audio-section">
-        <div>
-          <span class="card-eyebrow">Spoken Word Archive</span>
-          <h3 style="font-family: var(--serif); font-size: 1.8rem; font-weight: 400; margin-top: 0.5rem;">Audio Reading One</h3>
-          <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 0.4rem;">03:24 · Spoken Word & Ambient Tone</p>
-        </div>
-        <button class="audio-play-trigger" id="playHeroAudio">▶ Play slowly</button>
-        <audio id="heroAudio" src="audio-reading-1.mp3" preload="none"></audio>
-      </div>
-
-      <!-- Card 5: Quick Navigation / Collections -->
-      <div class="bento-card bento-links">
-        <span class="card-eyebrow">The Core Collections</span>
-        <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 0.5rem;">
-          <a href="works.html" class="bento-link-row"><span>I. Longing</span> <span>→</span></a>
-          <a href="works.html" class="bento-link-row"><span>II. Devotion</span> <span>→</span></a>
-          <a href="works.html" class="bento-link-row"><span>III. Vulnerability</span> <span>→</span></a>
-        </div>
-      </div>
+      <!-- Card 6: Resume / Journal -->
+      <a href="journal.html" class="b-card card-resume">
+        <span class="card-label">Journal & Notes</span>
+        <span class="card-arrow">↗</span>
+      </a>
 
     </div>
   </main>
 
   <!-- =========================================
-       SEAMLESS SIDEWAYS MARQUEE (BELOW BENTO)
+       SIDEWAYS SCROLLING MARQUEE (GALLERY)
        ========================================= -->
-  <section class="marquee-section" aria-label="Visual Gallery">
+  <section class="marquee-section">
     <div class="marquee-header">
-      <div>
-        <span class="card-eyebrow">Visual Fragments</span>
-        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300;">Light still finds the open hand</h2>
-      </div>
-      <p style="color: var(--text-muted); font-size: 0.9rem; max-width: 360px;">
-        Hover to pause. A visual journey through quiet moments and handwritten notes.
-      </p>
+      <span style="font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted);">Visual Fragments</span>
+      <span style="font-family: var(--serif); font-size: 1.5rem; font-style: italic;">Light still finds the open hand</span>
     </div>
 
     <div class="marquee-track-wrap">
-      <!-- Group 1 -->
+      <!-- Set 1 -->
       <div class="marquee-set">
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Gallery Plate 1" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Fragment 1" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment I</span>
-            <p class="plate-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment I</span>
+            <p class="plate-quote">“Even after winter, the root remembers warmth.”</p>
           </div>
         </article>
 
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Gallery Plate 2" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Fragment 2" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment II</span>
-            <p class="plate-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment II</span>
+            <p class="plate-quote">“To stay gentle in a loud world is quiet power.”</p>
           </div>
         </article>
 
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Gallery Plate 3" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Fragment 3" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment III</span>
-            <p class="plate-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment III</span>
+            <p class="plate-quote">“Nothing honest you loved is ever truly wasted.”</p>
           </div>
         </article>
       </div>
 
-      <!-- Group 2 (Seamless Clone) -->
+      <!-- Set 2 (Seamless Clone) -->
       <div class="marquee-set" aria-hidden="true">
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Gallery Plate 1" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM.jpeg" alt="Fragment 1" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment I</span>
-            <p class="plate-quote">“Even after winter, the root remembers how to reach for warmth.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment I</span>
+            <p class="plate-quote">“Even after winter, the root remembers warmth.”</p>
           </div>
         </article>
 
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Gallery Plate 2" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(1).jpeg" alt="Fragment 2" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment II</span>
-            <p class="plate-quote">“To stay gentle in a loud world is its own kind of quiet revolution.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment II</span>
+            <p class="plate-quote">“To stay gentle in a loud world is quiet power.”</p>
           </div>
         </article>
 
         <article class="gallery-plate">
           <div class="gallery-plate-img">
-            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Gallery Plate 3" />
+            <img src="WhatsApp%20Image%202026-10-25%20at%208.16.23%20AM%20(2).jpeg" alt="Fragment 3" />
           </div>
           <div class="gallery-plate-body">
-            <span class="card-eyebrow">Fragment III</span>
-            <p class="plate-quote">“Nothing honest you have ever loved is ever truly wasted.”</p>
+            <span style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Fragment III</span>
+            <p class="plate-quote">“Nothing honest you loved is ever truly wasted.”</p>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- =========================================
-       FOOTER & NEWSLETTER
-       ========================================= -->
+  <!-- Footer -->
   <footer>
-    <div class="footer-box">
-      <div>
-        <span class="card-eyebrow" style="margin-bottom: 0.5rem; display: block;">The Letter</span>
-        <h2 style="font-family: var(--serif); font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 300; margin-bottom: 0.75rem;">Stay close to the work</h2>
-        <p style="color: var(--text-muted); font-size: 0.95rem; font-weight: 300;">
-          New poems, audio readings, and selected appearances, sent with care.
-        </p>
-      </div>
-
-      <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Welcome to The Letter.'); this.reset();">
-        <input type="email" class="newsletter-input" placeholder="Your email address" required />
-        <button type="submit" class="btn-submit">Subscribe</button>
-      </form>
-    </div>
-
-    <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 2rem; font-size: 0.68rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted);">
-      <span>© 2026 ADI POETRY</span>
-      <span>Love, Held With Courage</span>
-    </div>
+    <span>© 2026 Adi Poetry</span>
+    <span>Love, Held With Courage</span>
   </footer>
 
-  <!-- =========================================
-       SCRIPTS
-       ========================================= -->
-  <script>
-    // Mobile Navigation Toggle
-    const openMenu = document.getElementById('openMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileNav = document.getElementById('mobileNav');
-
-    openMenu.addEventListener('click', () => mobileNav.classList.add('open'));
-    closeMenu.addEventListener('click', () => mobileNav.classList.remove('open'));
-
-    // Audio Play Trigger
-    const playBtn = document.getElementById('playHeroAudio');
-    const audio = document.getElementById('heroAudio');
-
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play().catch(() => alert('Please upload audio-reading-1.mp3 to your repository.'));
-        playBtn.textContent = '❚❚ Pause';
-        playBtn.style.background = 'var(--accent-bronze)';
-        playBtn.style.color = 'var(--text-main)';
-      } else {
-        audio.pause();
-        playBtn.textContent = '▶ Play slowly';
-        playBtn.style.background = 'var(--text-main)';
-        playBtn.style.color = 'var(--bg-deep)';
-      }
-    });
-  </script>
 </body>
 </html>
